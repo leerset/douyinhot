@@ -1,0 +1,11 @@
+<div class='table-header'>
+  <div data-toggle='tooltip'
+       data-html='true'
+       data-placement='bottom'
+       title='<h6><%= tooltip_message %></h6>'>
+    <%= title %>
+  </div>
+  <% if link.present? %>
+    <a href=<%= link %>><span class='mdi mdi-plus-circle', data-qa='create-button'><span></a>
+  <% end %>
+</div>

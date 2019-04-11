@@ -1,0 +1,100 @@
+<!-- Navigation Bar-->
+<header id='topnav'>
+  <div class='topbar-main'>
+    <div class='container'>
+
+      <!-- Logo container -->
+      <div>
+      </div>
+      <!-- End Logo container -->
+
+      <% if logged_in? %>
+        <div class='menu-extras'>
+          <ul class='navbar-nav navbar-right pull-right'>
+            <div class='nav'>
+              <li class='navbar-c-items nav-toggle'>
+               <!-- Mobile menu toggle -->
+                <a class='right-menu-item navbar-toggle'>
+                  <div class='lines'>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </a>
+              </li>
+              <!-- Profile dropdown-->
+              <li class='dropdown navbar-c-items' id='profile-dropdown'>
+                <a href='#' class='right-menu-item dropdown-toggle' data-toggle='dropdown'>
+                  <i class='glyphicon glyphicon-user'></i>
+                </a>
+                <ul class='dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list'>
+                  <li>
+                    <h5>你好, <%= current_user.user_name %></h5>
+                    <!-- This link is stubbed out because sending a delete method with a link is transformed into a form request by Rails -->
+                    <!-- and thus cannot be easily canceled as an event in the JS. This event cancel needs to be performed so as not to -->
+                    <!-- trigger a call to /refresh on click of the sign out button. -->
+                    <%= link_to '注销', destroy_user_session_path, method: :delete, data: { qa: 'menu-sign-out' } %>
+                  </li>
+                </ul>
+              </li>
+            </div>
+          </ul>
+        </div>
+        <!-- end menu-extras -->
+    </div> <!-- end container -->
+  </div>
+  <!-- end topbar-main -->
+
+  <div class='navbar-custom'>
+    <div class='container'>
+      <div id='navigation'>
+        <!-- Navigation Menu -->
+        <ul class='navigation-menu'>
+          <li class='has-submenu'>
+            <a href='#' data-qa="menu-admin"><%= image_tag 'home.svg' %>设置</a>
+            <ul class='management-dropdown submenu'>
+              <% if can? :index, User %>
+                <li><%= link_to '用户', users_path, data: { qa: 'menu-organization' } %></li>
+              <% end %>
+              <% if can? :index, App %>
+                <li><%= link_to 'APP', apps_path, data: { qa: 'menu-organization' } %></li>
+              <% end %>
+              <% if can? :index, CategoryFormula %>
+                <li><%= link_to '品类公式', category_formulas_path, data: { qa: 'menu-organization' } %></li>
+              <% end %>
+            </ul>
+          </li>
+          <% if can? :index, Group %>
+            <%= active_link_to '/groups', data: { qa: 'menu-devices' }, wrap_tag: :li do %>
+              <%= image_tag 'frame.svg' %>
+              <span>分组</span>
+            <% end %>
+          <% end %>
+          <% if can? :index, Category %>
+            <%= active_link_to '/categories', data: { qa: 'menu-device-types' }, wrap_tag: :li do %>
+              <%= image_tag 'mind_map.svg' %>
+              <span>品类</span>
+            <% end %>
+          <% end %>
+        </ul>
+        <!-- End navigation menu -->
+      </div> <!-- end #navigation -->
+    <% elsif logged_out? %>
+      <ul class='navbar-nav navbar-right signed-out'>
+        <li>
+          <%= link_to '登录', user_session_path, data: { qa: 'menu-sign-in' }, class: 'btn btn-ith-blue btn-lg sign-in-btn' %>
+        </li>
+      </ul>
+    <% else %>
+      <ul class='navbar-nav navbar-right'>
+        <li>
+          <%= link_to 'API文档', Constants::API_DOCS_LINK, target: :_blank, class: 'btn btn-ith-blue btn-lg sign-in-btn' %>
+        </li>
+        <li>
+          <%= link_to '注销', destroy_user_session_path, method: :delete, data: { qa: 'menu-sign-out' }, class: 'btn btn-ith-blue btn-lg sign-in-btn' %>
+        </li>
+    <% end %>
+    </div> <!-- end container -->
+  </div> <!-- end navbar-custom -->
+</header>
+<!-- End Navigation Bar-->

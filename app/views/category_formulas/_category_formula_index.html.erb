@@ -1,0 +1,50 @@
+<div class='row' id='api-key-index'>
+  <div class='col-sm-12'>
+    <div class='card-box table-responsive'>
+      <%= render 'shared/table_header',
+                 title: '品类公式',
+                 tooltip_message: "<h6>品类公式</h6>",
+                 link: new_category_formula_path %>
+      <table id='datatable-responsive'
+             class='table table-striped table-bordered dt-responsive nowrap'
+             cellspacing='0' width='100%'>
+        <thead>
+          <tr>
+            <th data-priority='1'>品类</th>
+            <th data-priority='1'>品类编号</th>
+            <th data-priority='1'>公式</th>
+            <th data-priority='1'>上限</th>
+            <th data-priority='1'>版本号</th>
+            <th data-priority='4'></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% category_formulas.each do |category_formula| %>
+            <tr data-qa='datatable-row'>
+              <td><%= category_formula.category.category_name %></td>
+              <td><%= category_formula.category_number %></td>
+              <td><%= category_formula.formula %></td>
+              <td><%= category_formula.top_limit %></td>
+              <td><%= category_formula.version %></td>
+              <td>
+                <%= link_to edit_category_formula_path(category_formula) do %>
+                  <span class='primary glyphicon glyphicon-pencil' alt='Edit' data-qa='category-formula-<%= category_formula.category.category_name %>-edit'></span>
+                <% end %>
+                <%= link_to category_formula_path(category_formula),
+                            method: :delete,
+                            data: { 'confirm-swal': Messages::CONFIRM_ACTION_DELETE } do %>
+                  <span class='danger glyphicon glyphicon-trash' data-qa='category-formula-delete-button' alt='Delete'></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type='application/javascript'>
+  <%= render 'shared/data_tables.js.erb',
+             column_ordering: raw([[1, 'asc']]),
+             column_defs: 5 %>
+</script>

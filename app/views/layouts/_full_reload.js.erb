@@ -1,0 +1,5 @@
+$(document).on('turbolinks:click', function(event) {
+  if (<%= yield(:full_reload) == 'true' %>) {
+    event.preventDefault();
+  }
+});

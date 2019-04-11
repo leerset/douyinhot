@@ -1,0 +1,55 @@
+<div class='row' id='api-key-index'>
+  <div class='col-sm-12'>
+    <div class='card-box table-responsive'>
+      <%= render 'shared/table_header',
+                 title: '分组',
+                 tooltip_message: "<h6>分组</h6>"\
+                                  "<h6><b>直接根组:</b> 鱼、肉、水、辐射</h6>"\
+                                  "<h6><b>二级组:</b> 水果、蔬菜",
+                 link: new_group_path %>
+      <table id='datatable-responsive'
+             class='table table-striped table-bordered dt-responsive nowrap'
+             cellspacing='0' width='100%'>
+        <thead>
+          <tr>
+            <th data-priority='1'>名称</th>
+            <th data-priority='1'>编号</th>
+            <th data-priority='2'>组类</th>
+            <th data-priority='3'>从属</th>
+            <th data-priority='4'></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% groups.each do |group| %>
+            <tr data-qa='datatable-row'>
+              <td><%= group.group_name %></td>
+              <td><%= group.id %></td>
+              <% if group.group.present? %>
+                <td>二级组</td>
+                <td><%= group.group.group_name %></td>
+              <% else %>
+                <td>直接根组</td>
+                <td>N/A</td>
+              <% end %>
+              <td>
+                <%= link_to edit_group_path(group) do %>
+                  <span class='primary glyphicon glyphicon-pencil' alt='Edit' data-qa='group-<%= group.group_name %>-edit'></span>
+                <% end %>
+                <%= link_to group_path(group),
+                            method: :delete,
+                            data: { 'confirm-swal': Messages::CONFIRM_ACTION_DELETE } do %>
+                  <span class='danger glyphicon glyphicon-trash' data-qa='group-delete-button' alt='Delete'></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type='application/javascript'>
+  <%= render 'shared/data_tables.js.erb',
+             column_ordering: raw([[1, 'asc']]),
+             column_defs: 5 %>
+</script>

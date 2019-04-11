@@ -1,0 +1,48 @@
+<%= form_for @app do |f| %>
+  <div id='app-form'>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :app_name, 'APP名称' %>
+        <%= f.text_field :app_name, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :app_id, 'APP ID' %>
+        <%= f.number_field :app_id, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :firm_name, '公司名称' %>
+        <%= f.text_field :firm_name, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :registration_time, '注册时间' %>
+        <%= f.date_field :registration_time, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :status, '状态' %>
+        <%= f.number_field :status, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :comment, '备注' %>
+        <%= f.text_field :comment, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>&nbsp;</div>
+    <div class='row form-btn-container'>
+      <div class='col-md-12'>
+        <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+        <%= link_to '取消', apps_path, class: 'btn btn-cancel' %>
+      </div>
+    </div>
+  </div>
+<% end %>

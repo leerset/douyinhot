@@ -1,0 +1,46 @@
+<div class='row' id='api-key-index'>
+  <div class='col-sm-12'>
+    <div class='card-box table-responsive'>
+      <%= render 'shared/table_header',
+                 title: '用户',
+                 tooltip_message: "<h6>用户</h6>",
+                 link: new_user_path %>
+      <table id='datatable-responsive'
+             class='table table-striped table-bordered dt-responsive nowrap'
+             cellspacing='0' width='100%'>
+        <thead>
+          <tr>
+            <th data-priority='1'>编号</th>
+            <th data-priority='1'>名称</th>
+            <th data-priority='1'>邮箱</th>
+            <th data-priority='4'></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.each do |user| %>
+            <tr data-qa='datatable-row'>
+              <td><%= user.id %></td>
+              <td><%= user.user_name %></td>
+              <td><%= user.email %></td>
+              <td>
+                <%= link_to edit_user_path(user) do %>
+                  <span class='primary glyphicon glyphicon-pencil' alt='Edit' data-qa='user-<%= user.user_name %>-edit'></span>
+                <% end %>
+                <%= link_to user_path(user),
+                            method: :delete,
+                            data: { 'confirm-swal': Messages::CONFIRM_ACTION_DELETE } do %>
+                  <span class='danger glyphicon glyphicon-trash' data-qa='user-delete-button' alt='Delete'></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type='application/javascript'>
+  <%= render 'shared/data_tables.js.erb',
+             column_ordering: raw([[1, 'asc']]),
+             column_defs: 5 %>
+</script>

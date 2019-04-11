@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_name: MyString
+  app_id: MyString
+  app_key: MyString
+  app_sceret: MyString
+  firm_name: MyString
+  paltform: MyString
+  registration_time: 2019-04-10 11:40:24
+  status: 1
+  comment: MyText
+
+two:
+  app_name: MyString
+  app_id: MyString
+  app_key: MyString
+  app_sceret: MyString
+  firm_name: MyString
+  paltform: MyString
+  registration_time: 2019-04-10 11:40:24
+  status: 1
+  comment: MyText

@@ -1,0 +1,7 @@
+<div class='row' id='flash-msg-container'>
+    <% flash.each do |msg_type, msg| %>
+      <% unless msg_type.include?('toastr_') %>
+        <div class='alert alert-<%= msg_type %>'><%= msg.html_safe %></div>
+      <% end %>
+    <% end %>
+</div>

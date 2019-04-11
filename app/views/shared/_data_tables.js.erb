@@ -1,0 +1,85 @@
+$(document).on('turbolinks:load', function () {
+  initTable();
+  $('.clear-filter-btn').on('click', clearFilterInput);
+
+  // Don't close the filter dropdown menu on click of itself.
+  $('.column-filter .dropdown-menu').on('click', function () {
+    event.preventDefault();
+    event.stopPropagation();
+  });
+  // Hide the pagination buttons if they cannot be used.
+  hidePaginationButtons();
+  attachQaTableHandles();
+});
+
+// Initialize the table.
+function initTable() {
+  var table = $('#datatable-responsive').DataTable({
+    'autoWidth': true,
+    'order': <%= column_ordering ||= raw("''") %>,
+    'columnDefs': <%= column_defs ||= raw("''") %>,
+    'destroy': true,
+    'orderCellsTop': true,
+    'fixedHeader': true,
+    'pageLength': <%= Constants::DEFAULT_STUDIES_PER_PAGE %>,
+    'language': {
+      'search': '筛选:',
+      'zeroRecords': '没有数据',
+      'paginate': {
+        'first': '首页',
+        'last': '末页',
+        'next': '下一页',
+        'previous': '上一页',
+      },
+      'info': '显示 _START_ 到 _END_ 共 _TOTAL_ 条目',
+      'infoEmpty': '显示 0 到 0 共 0 条目',
+      'infoFiltered': '(已从 _MAX_ 条目筛选)',
+      'lengthMenu': '每页 _MENU_ 条目',
+    },
+    'drawCallback': function() {
+      $('#datatable-responsive').show();
+      if(typeof callback === 'function') callback();
+      hidePaginationButtons();
+    }
+  });
+  // Add event listeners to the two range filtering inputs.
+  $('#from-date').on('change paste keyup dp.change', function(e) {
+    table.draw();
+   });
+  $('#to-date').on('change paste keyup dp.change', function(e) {
+    table.draw();
+  });
+}
+
+// Clear filter input.
+function clearFilterInput() {
+  var input = $(this).closest('label').find('input');
+  var tagFilterInput = input.filter( function(iTag) {
+    return input[iTag].id == 'tag-filter-input';
+  });
+  var autoCompleteInput = input.filter( function(iTag) {
+    return input[iTag].classList.contains("ui-autocomplete-input");
+  });
+  if (tagFilterInput.length > 0 && autoCompleteInput.length > 0) {
+    // For tag filtering the X button should only clear the
+    // autocomplete field, not the tag list.
+    input = autoCompleteInput.eq(0);
+  }
+  input.val('');
+  input.keyup();
+}
+
+// Hide pagination buttons.
+function hidePaginationButtons() {
+  if ($('.paginate_button.previous').hasClass('disabled') &&
+      $('.paginate_button.next').hasClass('disabled')) {
+    $('.paginate_button.active').hide();
+  }
+}
+
+// Attach uniform QA handles dynamially to all tables.
+function attachQaTableHandles() {
+  var table = $('#datatable-responsive');
+  table.attr('data-qa', 'datatable');
+  table.find('thead th').attr('data-qa', 'datatable-columnHeader');
+}

@@ -1,0 +1,31 @@
+$(document).on('turbolinks:load', function() {
+  $('#notifications-dropdown').on('click', '.mdi-close-circle', dismissNotification);
+});
+
+// Dismiss notification and update notification to active:false.
+function dismissNotification(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var $this = $(this);
+  $.ajax({
+    url: '/notifications/' + $this.attr('data-ntfn-id'),
+    type: "PATCH",
+    success: function() {
+      $this.closest('li').remove();
+      decrementNotificationCount();
+    }
+  });
+};
+
+// Decrement notification count and hide if the count is zero.
+function decrementNotificationCount() {
+  var ntfnCount = $('.hidden.notification-count').text();
+  var newNtfnCount = ntfnCount - 1;
+  $('.hidden.notification-count').text(newNtfnCount);
+  if (newNtfnCount <= <%= Constants::NOTIFICATION_BADGE_MAX %>) {
+    $('.badge').text(newNtfnCount);
+    if (newNtfnCount == 0) {
+      $('.badge').remove();
+    }
+  }
+};

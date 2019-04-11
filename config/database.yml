@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  username: root
+  password: <%= ENV['MYSQL_ROOT_PASSWORD'] || '' %>
+  port: <%= ENV['MYSQL_PORT'] || 3306 %>
+  host: <%= ENV['MYSQL_HOST'] || 'localhost' %>
+
+test:
+  <<: *default
+  database: greentestmini
+
+development:
+  <<: *default
+  database: greentestmini
+
+production:
+  <<: *default
+  database: greentestmini

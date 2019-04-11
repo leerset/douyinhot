@@ -1,0 +1,18 @@
+<% if object.errors.any? %>
+  <div id='error_explanation'>
+    <div class='alert alert-danger'>
+      表单包含 <%= pluralize(object.errors.count, '错误') %>.
+    </div>
+    <ul>
+      <% object.errors.full_messages.each do |msg| %>
+        <li>
+          <% if msg.include? '|' %>
+            <%= msg.split('|').last %>
+          <% else %>
+            <%= msg %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

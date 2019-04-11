@@ -1,0 +1,11 @@
+{
+  "name": "Greentest",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "highcharts": "^6.1.1"
+},
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
+}

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category_number: 1
+  category_name: MyString
+  group: one
+  image_url: MyString
+  standard: MyString
+  unit: MyString
+  group_index: 1
+
+two:
+  category_number: 1
+  category_name: MyString
+  group: two
+  image_url: MyString
+  standard: MyString
+  unit: MyString
+  group_index: 1

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | 绿食宝</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='theme-color' content='#15BECE'/>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag asset_path('greentest-logo.png'), rel: 'icon', type: 'image/png', data: { qa: 'tab-favicon' } %>
+    <%= stylesheet_link_tag 'application',
+                            'media': 'all',
+                            'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application',
+                               'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/shim' %>
+    <%= Gon::Base.render_data %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <div class='wrapper'>
+      <div class='container'>
+        <%= render 'layouts/flash_messages' %>
+        <%= yield %>
+        <%= render 'layouts/footer' %>
+      </div>
+    </div>
+    <script type='application/javascript'>
+      <%= render 'layouts/full_reload.js.erb' %>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<%= form_for @group do |f| %>
+  <div id='group-form'>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class='row'>
+      <div class='col-md-12' id='group-select-container'>
+        <%= f.label :group_id, '分组' %>
+        <%= f.select :group_id, Group.where(group_id: nil).map{|g| [g.group_name, g.id]}.to_h, { include_blank: '选择一个分组' }, { class: 'form-control', id: 'group-select', 'data-qa': 'form-group-dropdown'} %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :group_name, '分组名称' %>
+        <%= f.text_field :group_name, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>&nbsp;</div>
+    <div class='row form-btn-container'>
+      <div class='col-md-12'>
+        <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+        <%= link_to '取消', groups_path, class: 'btn btn-cancel' %>
+      </div>
+    </div>
+  </div>
+<% end %>

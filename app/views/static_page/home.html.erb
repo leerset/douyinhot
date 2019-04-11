@@ -1,0 +1,26 @@
+<% provide(:title, '关于') %>
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <div class='home-info-section'>
+      <h3 data-qa='home-what-heading'>什么是 Greentest Mini API Manager?</h3>
+      <p data-qa='home-what-text'>Greentest Mini API Manager是一个是一个健壮的web界面和REST API监视、管理和更新你的类别的物品.
+    </div>
+    <div class='home-info-section'>
+      <h3 data-qa='home-how-heading'>它是如何工作的呢?</h3>
+      <p data-qa='home-how-text'>Greentest Mini API Manager与你的类别项目通过一个安全的、HIPAA兼容,可靠的管道由Greentest网络。这允许您自信地、可靠地跟踪指标,得到警报,和在运行时监控你的类别的健康项目!
+    </div>
+    <div class='home-info-section'>
+      <%= image_tag 'background.jpg', id: 'greentest-diagram', data: { qa: 'home-diagram-image' } %>
+    </div>
+    <div class='home-info-section'>
+      <h3 data-qa='home-where-heading'>了解更多?</h3>
+      <p data-qa='home-where-text'>查看以下链接 <a href='#', target='_blank'>
+      API文档</a>!</p>
+    </div>
+    <% unless current_user.present? %>
+      <div class='home-info-section'>
+        <%= link_to '立即登录!', user_session_path, class: 'btn btn-primary', data: { qa: 'home-signUp-button' } %>
+      </div>
+    <% end %>
+  </div>
+</div>

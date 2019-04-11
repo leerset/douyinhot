@@ -1,0 +1,55 @@
+<%= form_for @category do |f| %>
+  <div id='category-form'>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class='row'>
+      <div class='col-md-12' id='category-select-container'>
+        <%= f.label :group_id, '品类分组' %>
+        <%= f.select :group_id, Group.all.map{|g| [g.group_name, g.id]}.to_h, { include_blank: '选择一个分组' }, { class: 'form-control', id: 'group-select', 'data-qa': 'form-group-dropdown'} %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :category_name, '品类名称' %>
+        <%= f.text_field :category_name, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :category_number, '品类编号' %>
+        <%= f.number_field :category_number, { required: nil, 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :standard, '参考标准' %>
+        <%= f.text_field :standard, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :unit, '单位' %>
+        <%= f.text_field :unit, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :image_url, '品类图片' %>
+        <% if @category.image_url.present? %>
+          <div>
+            <img id='CategoryPictureImg' src="<%= Qiniu::Public.format_url(@category.image_url, :p2w200h150) %>", alt='品类图片' style="max-height:200px; max-width: 300px; vertical-align:middle;">
+          </div>
+        <% else %>
+          <img id='CategoryPictureImg' alt='品类图片'  >
+        <% end %>
+        <%= f.file_field :category_picture_filepath, accept: 'image/png,image/gif,image/jpeg', onchange: 'previewCategoryPicture()', class: 'btn' %>
+      </div>
+    </div>
+    <div class='row'>&nbsp;</div>
+    <div class='row form-btn-container'>
+      <div class='col-md-12'>
+        <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+        <%= link_to '取消', categories_path, class: 'btn btn-cancel' %>
+      </div>
+    </div>
+  </div>
+<% end %>
