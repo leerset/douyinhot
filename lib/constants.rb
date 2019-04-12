@@ -4,6 +4,8 @@ module Constants
   # Number of minutes before inactive session expires.
   SESSION_LEN_IN_MINUTES = 30
 
+  NOTIFICATION_BADGE_MAX = 100
+
   # Number of minutes before showing the session expiration countdown modal.
   SESSION_COUNTDOWN_MODAL_TIMEOUT = 28
 

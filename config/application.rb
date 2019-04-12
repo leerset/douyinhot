@@ -14,6 +14,10 @@ module Greentest
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir["#{config.root}/lib/qiniu/"]
     # Settings in config/environments/* take precedence over those specified here.
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.paths << Rails.root.join('app', 'assets', 'images')
+    config.assets.paths << Rails.root.join('app', 'assets', 'config' )
+    config.assets.precompile += %w( .svg .eot .woff .woff2 .ttf .jpg .jpeg .png .js )
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.

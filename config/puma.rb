@@ -2,9 +2,9 @@ environment ENV['RAILS_ENV'] || 'development'
 
 daemonize true
 
-pidfile "//var/www/greentest/tmp/pids/puma.pid"
-stdout_redirect "//var/www/greentest/log/stdout", "//var/www/greentest/log/stderr"
+pidfile "/home/deploy/greentest/tmp/pids/puma.pid"
+stdout_redirect "/home/deploy/greentest/log/stdout", "/home/deploy/greentest/log/stderr"
 
-threads 0, 16
+threads 5, 5
 
-bind "unix:///tmp/deploy.sock"
+bind "unix:/home/deploy/greentest/tmp/sockets/puma.sock"

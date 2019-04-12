@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://gems.ruby-china.com'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
@@ -60,6 +60,8 @@ gem 'mini_magick', '~> 4.8'
 # Use mina for deployment
 # gem 'capistrano-rails', group: :development
 gem 'mina'
+
+gem 'dotenv-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
