@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = user_created_msg
+      flash[:success] = Messages::CREATED
       redirect_to users_path
     else
       render 'new'
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # Update an API key.
   def update
     if @user.update_attributes(user_params)
-      flash[:toastr_success] = Messages::API_KEY_UPDATED
+      flash[:toastr_success] = Messages::UPDATED
       redirect_to users_path
     else
       render 'edit'
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   # Destroy an API key.
   def destroy
     @user.destroy
-    flash[:toastr_success] = Messages::API_KEY_DELETED
+    flash[:toastr_success] = Messages::DELETED
     redirect_to users_path
   end
 
@@ -48,12 +48,6 @@ class UsersController < ApplicationController
   # Set API key.
   def set_user
     @user = User.find(params[:id])
-  end
-
-  # Build flash message to render on successful create.
-  def user_created_msg
-    "#{Messages::API_KEY_CREATED}<br>#{Constants::API_KEY_HEADER}: "\
-    "#{@user_value}<br>#{Messages::SAVE_API_KEY}"
   end
 
   # Sanitize API key params.

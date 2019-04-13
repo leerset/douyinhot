@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
       @category.upload_picture(category_picture_filepath)
     end
     if @category.save
-      flash[:success] = category_created_msg
+      flash[:success] = Messages::CREATED
       redirect_to categories_path
     else
       render 'new'
@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
       @category.upload_picture(category_picture_filepath)
     end
     if @category.update_attributes(category_params)
-      flash[:toastr_success] = Messages::API_KEY_UPDATED
+      flash[:toastr_success] = Messages::UPDATED
       redirect_to categories_path
     else
       render 'edit'
@@ -52,7 +52,7 @@ class CategoriesController < ApplicationController
   # Destroy an API key.
   def destroy
     @category.destroy
-    flash[:toastr_success] = Messages::API_KEY_DELETED
+    flash[:toastr_success] = Messages::DELETED
     redirect_to categories_path
   end
 
@@ -90,12 +90,6 @@ class CategoriesController < ApplicationController
   def set_category
     id = params[:id] || params[:category_id]
     @category = Category.find(id)
-  end
-
-  # Build flash message to render on successful create.
-  def category_created_msg
-    "#{Messages::API_KEY_CREATED}<br>#{Constants::API_KEY_HEADER}: "\
-    "#{@category_value}<br>#{Messages::SAVE_API_KEY}"
   end
 
   # Sanitize API key params.

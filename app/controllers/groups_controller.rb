@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      flash[:success] = group_created_msg
+      flash[:success] = Messages::CREATED
       redirect_to groups_path
     else
       render 'new'
@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
   # Update an API key.
   def update
     if @group.update_attributes(group_params)
-      flash[:toastr_success] = Messages::API_KEY_UPDATED
+      flash[:toastr_success] = Messages::UPDATED
       redirect_to groups_path
     else
       render 'edit'
@@ -39,7 +39,7 @@ class GroupsController < ApplicationController
   # Destroy an API key.
   def destroy
     @group.destroy
-    flash[:toastr_success] = Messages::API_KEY_DELETED
+    flash[:toastr_success] = Messages::DELETED
     redirect_to groups_path
   end
 
@@ -48,12 +48,6 @@ class GroupsController < ApplicationController
   # Set API key.
   def set_group
     @group = Group.find(params[:id])
-  end
-
-  # Build flash message to render on successful create.
-  def group_created_msg
-    "#{Messages::API_KEY_CREATED}<br>#{Constants::API_KEY_HEADER}: "\
-    "#{@group_value}<br>#{Messages::SAVE_API_KEY}"
   end
 
   # Sanitize API key params.

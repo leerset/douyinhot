@@ -17,7 +17,7 @@ class CategoryFormulasController < ApplicationController
   def create
     @category_formula = CategoryFormula.new(category_formula_params)
     if @category_formula.save
-      flash[:success] = category_formula_created_msg
+      flash[:success] = Messages::CREATED
       redirect_to category_formulas_path
     else
       render 'new'
@@ -28,7 +28,7 @@ class CategoryFormulasController < ApplicationController
   # Update an API key.
   def update
     if @category_formula.update_attributes(category_formula_params)
-      flash[:toastr_success] = Messages::API_KEY_UPDATED
+      flash[:toastr_success] = Messages::UPDATED
       redirect_to category_formulas_path
     else
       render 'edit'
@@ -39,7 +39,7 @@ class CategoryFormulasController < ApplicationController
   # Destroy an API key.
   def destroy
     @category_formula.destroy
-    flash[:toastr_success] = Messages::API_KEY_DELETED
+    flash[:toastr_success] = Messages::DELETED
     redirect_to category_formulas_path
   end
 
@@ -48,12 +48,6 @@ class CategoryFormulasController < ApplicationController
   # Set API key.
   def set_category_formula
     @category_formula = CategoryFormula.find(params[:id])
-  end
-
-  # Build flash message to render on successful create.
-  def category_formula_created_msg
-    "#{Messages::API_KEY_CREATED}<br>#{Constants::API_KEY_HEADER}: "\
-    "#{@category_formula_value}<br>#{Messages::SAVE_API_KEY}"
   end
 
   # Sanitize API key params.
