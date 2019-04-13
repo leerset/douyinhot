@@ -1,7 +1,7 @@
 #! /bin/sh
-PUMA_CONFIG_FILE=/var/www/greentest/config/puma.rb
-PUMA_PID_FILE=/var/www/greentest/tmp/pids/puma.pid
-PUMA_SOCKET=/var/www/greentest/tmp/sockets/puma.sock
+PUMA_CONFIG_FILE=./config/puma.rb
+PUMA_PID_FILE=./tmp/pids/puma.pid
+PUMA_SOCKET=./tmp/sockets/puma.sock
 
 # check if puma process is running
 puma_is_running() {
