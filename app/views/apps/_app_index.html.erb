@@ -15,7 +15,7 @@
             <th data-priority='1'>KEY</th>
             <th data-priority='1'>SECRET KEY</th>
             <th data-priority='1'>公司名称</th>
-            <th data-priority='1'>注册时间</th>
+            <th data-priority='1'>登记时间</th>
             <th data-priority='1'>状态</th>
             <th data-priority='1'>备注</th>
             <th data-priority='4'></th>
@@ -29,8 +29,8 @@
               <td><%= app.app_key %></td>
               <td><%= app.app_secret %></td>
               <td><%= app.firm_name %></td>
-              <td><%= app.registration_time %></td>
-              <td><%= app.status %></td>
+              <td><%= app.created_at %></td>
+              <td><%= App.status_types.invert[app.status] %></td>
               <td><%= app.comment %></td>
               <td>
                 <%= link_to edit_app_path(app) do %>

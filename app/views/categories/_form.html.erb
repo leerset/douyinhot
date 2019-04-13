@@ -4,31 +4,31 @@
     <div class='row'>
       <div class='col-md-12' id='category-select-container'>
         <%= f.label :group_id, '品类分组' %>
-        <%= f.select :group_id, Group.all.map{|g| [g.group_name, g.id]}.to_h, { include_blank: '选择一个分组' }, { class: 'form-control', id: 'group-select', 'data-qa': 'form-group-dropdown'} %>
+        <%= f.select :group_id, Group.all.map{|g| [g.group_name, g.id]}.to_h, { include_blank: '选择一个分组' }, { required: true, class: 'form-control', id: 'group-select', 'data-qa': 'form-group-dropdown'} %>
       </div>
     </div>
     <div class='row'>
       <div class='col-md-12'>
         <%= f.label :category_name, '品类名称' %>
-        <%= f.text_field :category_name, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+        <%= f.text_field :category_name, { required: true, 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
       </div>
     </div>
     <div class='row'>
       <div class='col-md-12'>
         <%= f.label :category_number, '品类编号' %>
-        <%= f.number_field :category_number, { required: nil, 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+        <%= f.number_field :category_number, { required: true, 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
       </div>
     </div>
     <div class='row'>
       <div class='col-md-12'>
         <%= f.label :standard, '参考标准' %>
-        <%= f.text_field :standard, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+        <%= f.text_field :standard, { required: false, 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
       </div>
     </div>
     <div class='row'>
       <div class='col-md-12'>
         <%= f.label :unit, '单位' %>
-        <%= f.text_field :unit, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+        <%= f.text_field :unit, { required: true, 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
       </div>
     </div>
     <div class='row'>

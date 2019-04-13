@@ -9,10 +9,7 @@ module Api
       # GET api/v1/download.
       # Get the download url for the file and redirect to it.
       def download
-        if can_download_category? &&
-           app_valid? &&
-           app_can_use? &&
-           is_newest?
+        if authorized? && use_status? && need_renew? && can_download?
           categories = Category.all
           render json: { success: true, categories: CategorySerializer.build_array(categories) }
         else
@@ -20,34 +17,32 @@ module Api
         end
       end
 
-      # def upload
-      #   if user_authenticated? &&
-      #      can_upload_category?
-      #     upload_and_create_category
-      #   else
-      #     render json: { success: false, reason: @reason }
-      #   end
-      # end
-
       private
 
       def check_request
-        @app.present? && @app.status
       end
 
-      def app_use?
-        @app.present? && @app.status
-      end
-
-      def category_exists?
-        return true if @category.present?
-        @reason = Messages::FILE_RESOURCE_NOT_FOUND
+      def authorized?
+        return true if @app.present?
+        @reason = Messages::UNAUTHORIZED
         false
       end
 
-      def can_download_category?
+      def use_status?
+        return true if @app.status == 0
+        @reason = 'APP禁用'
+        false
+      end
+
+      def need_renew?
         return true if @app.present?
-        @reason = Messages::UNAUTHORIZED
+        @reason = '已经是最新'
+        false
+      end
+
+      def can_download?
+        return true if @app.present?
+        @reason = '接口禁用'
         false
       end
 
