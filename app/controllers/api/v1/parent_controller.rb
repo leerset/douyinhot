@@ -13,7 +13,7 @@ module Api
       def set_credentials
         @username = request.headers["Green-Username"]
         @app_id = request.headers["Green-Appid"]
-        @user_agent = request.getHeader("User-Agent")
+        @user_agent = request.headers["User-Agent"]
       end
 
       # Find the user by the provided username or ith_user_id.
