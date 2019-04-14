@@ -22,6 +22,10 @@
             <th data-priority='1'>采集时间</th>
             <th data-priority='1'>解析结果</th>
             <th data-priority='1'>返回状态</th>
+            <th data-priority='1'>硬件版本</th>
+            <th data-priority='1'>软件版本</th>
+            <th data-priority='1'>厂商</th>
+            <th data-priority='1'>型号</th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +43,10 @@
               <td><%= resolution_request.sample_time %></td>
               <td><%= resolution_request.resolution_result %></td>
               <td><%= ResolutionRequest.exceptions.invert[resolution_request.return_status] %></td>
+              <td><%= resolution_request.hardware_version %></td>
+              <td><%= resolution_request.software_version %></td>
+              <td><%= resolution_request.firm_name %></td>
+              <td><%= resolution_request.model_number %></td>
             </tr>
           <% end %>
         </tbody>

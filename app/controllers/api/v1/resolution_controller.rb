@@ -13,7 +13,7 @@ module Api
       def calculate
         @code = 0
         if authorized? && use_status? && has_category? && has_category_formula? &&
-           mobile_has_gps? && mobile_has_idcode? &&
+           mobile_has_gps? && mobile_has_id_code? &&
            has_sample? && valid_sample? && valid_sample_length? &&
            has_hardware_id? && can_use? && valid_result?
           render json: {
@@ -31,12 +31,16 @@ module Api
       def set_params
         @hardware_id = params[:sn]
         @gps = params[:gps]
-        @idcode = params[:idcode]
+        @id_code = params[:ic]
         @sample = params[:x]
         @category_number = params[:cn]
         @category = Category.find_by(category_number: @category_number)
         @category_formula = @category.try(:category_formula)
         @formula_version = @category_formula.try(:version)
+        @hardware_version = params[:hv]
+        @software_version = params[:sv]
+        @firm_name = params[:fn]
+        @model_number = params[:mn]
       end
 
       def save_request
@@ -49,7 +53,11 @@ module Api
           hardware_id: @hardware_id,
           formula_version: @formula_version,
           gps: @gps,
-          id_code: @idcode
+          id_code: @id_code,
+          software_version: @software_version,
+          software_version: @software_version,
+          firm_name: @firm_name,
+          model_number: @model_number
         )
       end
 
@@ -98,9 +106,9 @@ module Api
         false
       end
 
-      def mobile_has_idcode?
+      def mobile_has_id_code?
         return true unless @user_agent.present? && @user_agent.match(/Android|iPhone|iPad/i)
-        return true if @idcode.present?
+        return true if @id_code.present?
         @code = 7
         false
       end

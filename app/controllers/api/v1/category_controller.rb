@@ -12,7 +12,7 @@ module Api
       # Get the download url for the file and redirect to it.
       def download
         @code = 0
-        if authorized? && use_status? && need_renew? && can_use? && mobile_has_idcode?
+        if authorized? && use_status? && need_renew? && can_use? && mobile_has_id_code?
           @category_request.update(release_status: 2)
           categories = Category.all.order(:category_number)
           render json: { success: true, code: @code, result: CategorySerializer.build_array(categories) }
@@ -25,7 +25,7 @@ module Api
       private
 
       def set_params
-        @idcode = params[:idcode]
+        @id_code = params[:ic]
       end
 
       def save_request
@@ -35,7 +35,7 @@ module Api
           request_status: -1,
           release_status: 1,
           request_ip: request.remote_ip,
-          id_code: @idcode,
+          id_code: @id_code,
         )
       end
 
@@ -73,9 +73,9 @@ module Api
         false
       end
 
-      def mobile_has_idcode?
+      def mobile_has_id_code?
         return true unless @user_agent.present? && @user_agent.match(/Android|iPhone|iPad/i)
-        return true if @idcode.present?
+        return true if @id_code.present?
         @code = 7
         false
       end
