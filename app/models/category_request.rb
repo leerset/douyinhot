@@ -10,10 +10,10 @@ class CategoryRequest < ApplicationRecord
     用户停止服务
     用户无效
     时间戳相同
-    未知
-    未知
+    未知5
+    未知6
     设备无效
-    未知
-    未知}
+    未知8
+    未知9}
 
 end
