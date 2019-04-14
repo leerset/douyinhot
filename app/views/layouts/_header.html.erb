@@ -59,8 +59,19 @@
               <% if can? :index, App %>
                 <li><%= link_to 'APP', apps_path, data: { qa: 'menu-organization' } %></li>
               <% end %>
-              <% if can? :index, CategoryFormula %>
-                <li><%= link_to '品类公式', category_formulas_path, data: { qa: 'menu-organization' } %></li>
+              <% if can? :index, ApiManage %>
+                <li><%= link_to '接口管理', api_manages_path, data: { qa: 'menu-organization' } %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li class='has-submenu'>
+            <a href='#' data-qa="menu-admin"><%= image_tag 'home.svg' %>记录</a>
+            <ul class='management-dropdown submenu'>
+              <% if can? :index, CategoryRequest %>
+                <li><%= link_to '下载请求', category_requests_path, data: { qa: 'menu-organization' } %></li>
+              <% end %>
+              <% if can? :index, ResolutionRequest %>
+                <li><%= link_to '解析请求', resolution_requests_path, data: { qa: 'menu-organization' } %></li>
               <% end %>
             </ul>
           </li>
@@ -74,6 +85,12 @@
             <%= active_link_to '/categories', data: { qa: 'menu-device-types' }, wrap_tag: :li do %>
               <%= image_tag 'mind_map.svg' %>
               <span>品类</span>
+            <% end %>
+          <% end %>
+          <% if can? :index, CategoryFormula %>
+            <%= active_link_to '/category_formulas', data: { qa: 'menu-device-types' }, wrap_tag: :li do %>
+              <%= image_tag 'mind_map.svg' %>
+              <span>品类公式</span>
             <% end %>
           <% end %>
         </ul>

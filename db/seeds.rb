@@ -5,5 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if User.none?
+  User.create(user_name: 'ABC', email: 'admin@aaa.com', password: 'abc123')
+end
 
-user = User.create(user_name: 'abc管理员', email: 'admin@aaa.com', password: 'abc123')
+ApiManage.create_with(manage: 0).find_or_create_by(api_name: 'download')
+ApiManage.create_with(manage: 0).find_or_create_by(api_name: 'resolution')

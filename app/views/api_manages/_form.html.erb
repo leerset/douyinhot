@@ -1,0 +1,25 @@
+<%= form_for @api_manage do |f| %>
+  <div id='api-manage-form'>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :api_name, '接口名称' %>
+        <%= f.text_field :api_name, { required: true, 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>&nbsp;</div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :manage, '管理状态' %>
+        <%= f.select :manage, ApiManage.manage_types, { required: true, class: 'form-control', id: 'group-select', 'data-qa': 'form-group-dropdown'} %>
+      </div>
+    </div>
+    <div class='row'>&nbsp;</div>
+    <div class='row form-btn-container'>
+      <div class='col-md-12'>
+        <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+        <%= link_to '取消', api_manages_path, class: 'btn btn-cancel' %>
+      </div>
+    </div>
+  </div>
+<% end %>

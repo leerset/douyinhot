@@ -6,6 +6,7 @@ module Api
     class CategoryController < ParentController
       before_action :set_params
       before_action :save_request
+      after_action :update_request
 
       # GET api/v1/download.
       # Get the download url for the file and redirect to it.
@@ -14,7 +15,7 @@ module Api
         if authorized? && use_status? && need_renew? && can_use? && mobile_has_idcode?
           @category_request.update(release_status: 2)
           categories = Category.all.order(:category_number)
-          render json: { success: true, code: @code, categories: CategorySerializer.build_array(categories) }
+          render json: { success: true, code: @code, result: CategorySerializer.build_array(categories) }
         else
           @category_request.update(release_status: 0)
           render json: { success: false, code: @code, reason: CategoryRequest.exceptions.invert[@code] }
@@ -35,6 +36,12 @@ module Api
           release_status: 1,
           request_ip: request.remote_ip,
           id_code: @idcode,
+        )
+      end
+
+      def update_request
+        @resolution_request.update(
+          request_status: @code
         )
       end
 

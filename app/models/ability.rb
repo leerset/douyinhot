@@ -18,6 +18,9 @@ class Ability
     can :crud,         Category
     can :crud,         CategoryFormula
     can :crud,         CategoryFormulaHistory
+    can :crud,         CategoryRequest
+    can :crud,         ResolutionRequest
+    can :crud,         ApiManage
 
   end
 end

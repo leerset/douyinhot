@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :categories do
     get :index_up, :index_down
   end
+  resources :category_requests, only: %i[index new edit create update destroy]
+  resources :resolution_requests, only: %i[index new edit create update destroy]
+  resources :api_manages, only: %i[index new edit create update destroy]
 
   # Set paths for the API.
   namespace :api do

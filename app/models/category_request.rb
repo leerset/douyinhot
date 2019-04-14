@@ -4,6 +4,7 @@ class CategoryRequest < ApplicationRecord
 
   before_save { self.request_time = Time.now }
 
+  enum release_types: ['不用下发', '需要下发', '下发完成']
   enum exceptions: %w{
     正常，下发更新品类数据
     接口关闭
