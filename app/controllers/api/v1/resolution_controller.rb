@@ -99,20 +99,20 @@ module Api
       end
 
       def mobile_has_idcode?
-        return true unless @user_agent.present? && @user_agent.match(/Android|iPhone|iPad/)
+        return true unless @user_agent.present? && @user_agent.match(/Android|iPhone|iPad/i)
         return true if @idcode.present?
         @code = 7
         false
       end
 
       def valid_sample?
-        return true if @sample.present? && @sample.strip =~ /^\d+(\.\d*)?$/ && @sample.to_f > 0
+        return true if @sample.present? && @sample =~ /^[0-9A-F]+$/i
         @code = 8
         false
       end
 
       def has_sample?
-        return true if @sample.present? && @sample != '0'
+        return true if @sample.present? && @sample != '00000000'
         @code = 9
         false
       end
@@ -125,8 +125,7 @@ module Api
 
       def valid_result?
         begin
-          x = @sample.to_f
-          @resolution_result = @category_formula.calculate(x)
+          @resolution_result = @category_formula.calculate(@sample)
           return true
         rescue
           @code = 10
@@ -135,7 +134,7 @@ module Api
       end
 
       def valid_sample_length?
-        return true if @sample.size == 8 && @sample.to_f > 0
+        return true if @sample.size == 8
         @code = 11
         false
       end
