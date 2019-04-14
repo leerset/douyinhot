@@ -13,7 +13,11 @@
             <th data-priority='1'>APPID</th>
             <th data-priority='1'>访问IP</th>
             <th data-priority='1'>用户</th>
+            <th data-priority='1'>硬件SN</th>
             <th data-priority='1'>IDCODE</th>
+            <th data-priority='1'>GPS</th>
+            <th data-priority='1'>品类编号</th>
+            <th data-priority='1'>公式版本</th>
             <th data-priority='1'>采集值</th>
             <th data-priority='1'>采集时间</th>
             <th data-priority='1'>解析结果</th>
@@ -26,7 +30,11 @@
               <td><%= resolution_request.app_id %></td>
               <td><%= resolution_request.request_ip %></td>
               <td><%= resolution_request.user.try(:user_name) %></td>
+              <td><%= resolution_request.hardware_id %></td>
               <td><%= resolution_request.id_code %></td>
+              <td><%= resolution_request.gps %></td>
+              <td><%= resolution_request.category_number %></td>
+              <td><%= resolution_request.formula_version %></td>
               <td><%= resolution_request.sample_value %></td>
               <td><%= resolution_request.sample_time %></td>
               <td><%= resolution_request.resolution_result %></td>
