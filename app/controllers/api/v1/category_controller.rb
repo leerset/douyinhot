@@ -9,13 +9,14 @@ module Api
       # GET api/v1/download.
       # Get the download url for the file and redirect to it.
       def download
+        @code = 0
         if authorized? && use_status? && need_renew? && can_use?
           @category_request.update(release_status: 2)
           categories = Category.all.order(:category_number)
-          render json: { success: true, categories: CategorySerializer.build_array(categories) }
+          render json: { success: true, code: @code, categories: CategorySerializer.build_array(categories) }
         else
           @category_request.update(release_status: 0)
-          render json: { success: false, reason: @reason }
+          render json: { success: false, code: @code, reason: CategoryRequest.exceptions.invert[@code] }
         end
       end
 
@@ -31,28 +32,28 @@ module Api
         )
       end
 
-      def authorized?
+      def can_use?
         return true if @app.present?
-        @reason = Messages::UNAUTHORIZED
+        @code = 1
         false
       end
 
       def use_status?
         return true if @app.status == 0
-        @reason = 'APP禁用'
+        @code = 2
+        false
+      end
+
+      def authorized?
+        return true if @app.present?
+        @code = 3
         false
       end
 
       def need_renew?
         last_request_time = @app.category_requests.where.not(id: @category_request.id).map(&:request_time).max
         return true if last_request_time < Category.last_updated_at
-        @reason = '已是最新'
-        false
-      end
-
-      def can_use?
-        return true if @app.present?
-        @reason = '接口禁用'
+        @code = 4
         false
       end
 
