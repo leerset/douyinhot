@@ -46,7 +46,8 @@ module Api
       end
 
       def can_use?
-        return true if @app.present?
+        download = ApiManage.find_by(api_name: 'download')
+        return true if download.present? && download.manage == 0
         @code = 1
         false
       end

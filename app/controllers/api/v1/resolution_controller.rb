@@ -61,7 +61,8 @@ module Api
       end
 
       def can_use?
-        return true if @app.present?
+        resolution = ApiManage.find_by(api_name: 'resolution')
+        return true if resolution.present? && resolution.manage == 0
         @code = 1
         false
       end
