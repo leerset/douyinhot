@@ -40,7 +40,7 @@ module Api
       end
 
       def update_request
-        @resolution_request.update(
+        @category_request.update(
           request_status: @code
         )
       end
