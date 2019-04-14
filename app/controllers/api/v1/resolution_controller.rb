@@ -54,7 +54,7 @@ module Api
           formula_version: @formula_version,
           gps: @gps,
           id_code: @id_code,
-          software_version: @software_version,
+          hardware_version: @hardware_version,
           software_version: @software_version,
           firm_name: @firm_name,
           model_number: @model_number
