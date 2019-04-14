@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_150213) do
+ActiveRecord::Schema.define(version: 2019_04_14_004419) do
 
   create_table "apps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "app_name"
@@ -64,12 +64,46 @@ ActiveRecord::Schema.define(version: 2019_04_10_150213) do
     t.index ["category_number"], name: "index_category_formulas_on_category_number"
   end
 
+  create_table "category_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "id_code"
+    t.string "app_id"
+    t.bigint "user_id"
+    t.datetime "request_time"
+    t.integer "request_status"
+    t.integer "release_status"
+    t.string "request_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_id"], name: "index_category_requests_on_app_id"
+    t.index ["user_id"], name: "index_category_requests_on_user_id"
+  end
+
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "group_name"
     t.bigint "group_id"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["group_id"], name: "index_groups_on_group_id"
+  end
+
+  create_table "resolution_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "id_code"
+    t.string "plain_code"
+    t.string "app_id"
+    t.bigint "user_id"
+    t.integer "category_number"
+    t.string "sample_value"
+    t.string "gps"
+    t.datetime "sample_time"
+    t.string "resolution_result"
+    t.integer "formula_version"
+    t.string "hardware_id"
+    t.string "request_ip"
+    t.integer "return_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_id"], name: "index_resolution_requests_on_app_id"
+    t.index ["user_id"], name: "index_resolution_requests_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

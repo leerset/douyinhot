@@ -13,7 +13,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*
-!/tmp/*
+/tmp/*
 !/log/.keep
 !/tmp/.keep
 
@@ -34,7 +34,4 @@
 /node_modules
 yarn-debug.log*
 .yarn-integrity
-
-/config/database.yml
-/config/credentials.yml.enc
-/config/puma.rb
+.env

@@ -1,8 +1,13 @@
 class Category < ApplicationRecord
   belongs_to :group
   has_one :category_formula, primary_key: :category_number, foreign_key: :category_number
+  has_many :resolution_requests, primary_key: :category_number, foreign_key: :category_number
 
   before_create :set_group_index
+
+  def self.last_updated_at
+    all.map(&:updated_at).max
+  end
 
   def set_group_index
     last_category = group.categories.order(group_index: :asc).last

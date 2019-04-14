@@ -2,7 +2,7 @@ default: &default
   adapter: mysql2
   pool: 5
   username: root
-  password: fb95b4503264dabe
+  password: 
   port: <%= ENV['MYSQL_PORT'] || 3306 %>
 
 test:

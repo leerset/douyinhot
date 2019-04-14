@@ -13,4 +13,13 @@ class CategoryFormula < ApplicationRecord
     params = CategoryFormulaHistory::WHITE_COLUMN.map { |column| [column, self.send(column)] }
     category_formula_histories.create!(Hash[params])
   end
+
+  def calculate(x)
+    begin
+      eval(self.formula).to_i
+    rescue
+      0
+    end
+  end
+
 end

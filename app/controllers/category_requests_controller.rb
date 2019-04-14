@@ -1,0 +1,2 @@
+class CategoryRequestsController < ApplicationController
+end

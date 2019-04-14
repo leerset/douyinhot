@@ -1,4 +1,4 @@
-class CategoryFormulasController < ApplicationController
+    class CategoryFormulasController < ApplicationController
   before_action :set_category_formula, only: %i[edit update destroy]
 
   # GET /category_formulas/new.

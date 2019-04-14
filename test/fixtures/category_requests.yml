@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_code: MyString
+  app_id: MyString
+  user: one
+  request_time: 2019-04-13 22:10:18
+  request_status: 1
+  release_status: 1
+  request_ip: MyString
+
+two:
+  id_code: MyString
+  app_id: MyString
+  user: two
+  request_time: 2019-04-13 22:10:18
+  request_status: 1
+  release_status: 1
+  request_ip: MyString
