@@ -68,10 +68,10 @@
             <a href='#' data-qa="menu-admin"><%= image_tag 'home.svg' %>记录</a>
             <ul class='management-dropdown submenu'>
               <% if can? :index, CategoryRequest %>
-                <li><%= link_to '下载请求', category_requests_path, data: { qa: 'menu-organization' } %></li>
+                <li><%= link_to '下载', category_requests_path, data: { qa: 'menu-organization' } %></li>
               <% end %>
               <% if can? :index, ResolutionRequest %>
-                <li><%= link_to '解析请求', resolution_requests_path, data: { qa: 'menu-organization' } %></li>
+                <li><%= link_to '解析', resolution_requests_path, data: { qa: 'menu-organization' } %></li>
               <% end %>
             </ul>
           </li>
