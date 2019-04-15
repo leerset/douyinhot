@@ -12,7 +12,7 @@
           <tr>
             <th data-priority='1'>APPID</th>
             <th data-priority='1'>访问IP</th>
-            <th data-priority='1'>用户</th>
+            <th data-priority='1'>用户ID</th>
             <th data-priority='1'>硬件SN</th>
             <th data-priority='1'>IDCODE</th>
             <th data-priority='1'>GPS</th>
@@ -33,7 +33,7 @@
             <tr data-qa='datatable-row'>
               <td><%= resolution_request.app_id %></td>
               <td><%= resolution_request.request_ip %></td>
-              <td><%= resolution_request.user.try(:user_name) %></td>
+              <td><%= resolution_request.appuser_id %></td>
               <td><%= resolution_request.hardware_id %></td>
               <td><%= resolution_request.id_code %></td>
               <td><%= resolution_request.gps %></td>

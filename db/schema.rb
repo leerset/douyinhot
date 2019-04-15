@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_110106) do
+ActiveRecord::Schema.define(version: 2019_04_15_180002) do
 
   create_table "api_manages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "api_name"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 2019_04_14_110106) do
     t.string "software_version"
     t.string "firm_name"
     t.string "model_number"
+    t.string "appuser_id"
     t.index ["app_id"], name: "index_resolution_requests_on_app_id"
     t.index ["user_id"], name: "index_resolution_requests_on_user_id"
   end

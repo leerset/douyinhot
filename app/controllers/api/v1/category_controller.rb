@@ -15,7 +15,8 @@ module Api
         if authorized? && use_status? && need_renew? && can_use? && mobile_has_id_code?
           @category_request.update(release_status: 2)
           categories = Category.all.order(:category_number)
-          render json: { success: true, code: @code, result: CategorySerializer.build_array(categories) }
+          render json: { success: true, code: @code, result: CategorySerializer.build_array(categories),
+            timestamp: Category.last_updated_at.to_i }
         else
           @category_request.update(release_status: 0)
           render json: { success: false, code: @code, reason: CategoryRequest.exceptions.invert[@code] }
@@ -26,6 +27,7 @@ module Api
 
       def set_params
         @id_code = params[:ic]
+        @timestamp = params[:ts]
       end
 
       def save_request
@@ -65,10 +67,7 @@ module Api
       end
 
       def need_renew?
-        last_request_time = @app.category_requests.where(release_status: 2)
-                                                  .where.not(id: @category_request.id)
-                                                  .map(&:request_time).max
-        return true if last_request_time < Category.last_updated_at
+        return true if @timestamp.to_i != Category.last_updated_at.to_i
         @code = 4
         false
       end

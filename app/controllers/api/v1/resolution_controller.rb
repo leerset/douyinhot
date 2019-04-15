@@ -29,6 +29,7 @@ module Api
       private
 
       def set_params
+        @appuser_id = params[:id]
         @hardware_id = params[:sn]
         @gps = params[:gps]
         @id_code = params[:ic]
@@ -47,6 +48,7 @@ module Api
         @resolution_request = ResolutionRequest.create(
           app_id: @app_id,
           user_id: @user.try(:id),
+          appuser_id: @appuser_id,
           request_ip: request.remote_ip,
           sample_value: @sample,
           category_number: @category_number,
