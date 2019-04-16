@@ -8,7 +8,7 @@ class ResolutionRequestsController < ApplicationController
 
   # GET /resolution_requests.
   def index
-    @resolution_requests = ResolutionRequest.all
+    @resolution_requests = ResolutionRequest.all.order(created_at: :desc)
   end
 
   def show

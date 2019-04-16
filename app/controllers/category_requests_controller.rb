@@ -8,7 +8,7 @@ class CategoryRequestsController < ApplicationController
 
   # GET /category_requests.
   def index
-    @category_requests = CategoryRequest.all
+    @category_requests = CategoryRequest.all.order(created_at: :desc)
   end
 
   def show
