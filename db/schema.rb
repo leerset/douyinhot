@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 2019_04_16_023246) do
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "group_name"
     t.bigint "group_id"
-    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_groups_on_group_id"
   end
 
