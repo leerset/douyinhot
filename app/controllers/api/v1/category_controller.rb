@@ -27,7 +27,6 @@ module Api
 
       def set_params
         @id_code = params[:ic]
-        @id_code_encode = @id_code.present? ? Base64.encode64(@id_code) : nil
         @timestamp = params[:ts]
       end
 
@@ -38,7 +37,7 @@ module Api
           request_status: -1,
           release_status: 1,
           request_ip: request.remote_ip,
-          id_code: @id_code_encode,
+          id_code: @id_code,
         )
       end
 
