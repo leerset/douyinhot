@@ -7,7 +7,6 @@ module Api
       skip_before_action :authenticate_user!
       before_action :set_credentials
       before_action :set_app
-      before_action :set_user
 
       # Set credentials variables.
       def set_credentials
