@@ -32,6 +32,7 @@ module Api
         @hardware_id = params[:sn]
         @gps = params[:gps]
         @id_code = params[:ic]
+        @id_code_encode = @id_code.present? ? Base64.encode64(@id_code) : nil
         @sample = params[:x]
         @category_number = params[:cn]
         @category = Category.find_by(category_number: @category_number)
@@ -54,7 +55,7 @@ module Api
           hardware_id: @hardware_id,
           formula_version: @formula_version,
           gps: @gps,
-          id_code: Base64.encode64(@id_code),
+          id_code: @id_code_encode,
           hardware_version: @hardware_version,
           software_version: @software_version,
           firm_name: @firm_name,
