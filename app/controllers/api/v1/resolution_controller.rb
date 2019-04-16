@@ -29,7 +29,6 @@ module Api
       private
 
       def set_params
-        @appuser_id = params[:id]
         @hardware_id = params[:sn]
         @gps = params[:gps]
         @id_code = params[:ic]
@@ -55,7 +54,7 @@ module Api
           hardware_id: @hardware_id,
           formula_version: @formula_version,
           gps: @gps,
-          id_code: @id_code,
+          id_code: Base64.encode64(@id_code),
           hardware_version: @hardware_version,
           software_version: @software_version,
           firm_name: @firm_name,

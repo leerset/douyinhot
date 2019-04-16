@@ -12,7 +12,7 @@
           <tr>
             <th data-priority='1'>APPID</th>
             <th data-priority='1'>访问IP</th>
-            <th data-priority='1'>用户</th>
+            <th data-priority='1'>用户ID</th>
             <th data-priority='1'>IDCODE</th>
             <th data-priority='1'>访问时间</th>
             <th data-priority='1'>下发状态</th>
@@ -24,8 +24,8 @@
             <tr data-qa='datatable-row'>
               <td><%= category_request.app_id %></td>
               <td><%= category_request.request_ip %></td>
-              <td><%= category_request.user.try(:user_name) %></td>
-              <td><%= category_request.id_code %></td>
+              <td><%= category_request.appuser_id %></td>
+              <td><%= category_request.decode %></td>
               <td><%= category_request.request_time %></td>
               <td><%= CategoryRequest.release_types.invert[category_request.release_status] %></td>
               <td><%= CategoryRequest.exceptions.invert[category_request.request_status] %></td>

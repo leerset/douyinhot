@@ -32,12 +32,12 @@ module Api
 
       def save_request
         @category_request = CategoryRequest.create(
+          appuser_id: @appuser_id,
           app_id: @app_id,
-          user_id: @user.try(:id),
           request_status: -1,
           release_status: 1,
           request_ip: request.remote_ip,
-          id_code: @id_code,
+          id_code: Base64.encode64(@id_code),
         )
       end
 

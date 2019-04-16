@@ -11,14 +11,9 @@ module Api
 
       # Set credentials variables.
       def set_credentials
-        @username = request.headers["Green-Username"]
+        @appuser_id = request.headers["Green-Userid"]
         @app_id = request.headers["Green-Appid"]
         @user_agent = request.headers["User-Agent"]
-      end
-
-      # Find the user by the provided username or ith_user_id.
-      def set_user
-        @user = User.find_by(user_name: @username)
       end
 
       # Find the user by the provided username or ith_user_id.
