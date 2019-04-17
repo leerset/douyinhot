@@ -13,10 +13,11 @@
             <th data-priority='1'>APPID</th>
             <th data-priority='1'>访问IP</th>
             <th data-priority='1'>用户ID</th>
-            <th data-priority='1'>IDCODE</th>
             <th data-priority='1'>访问时间</th>
             <th data-priority='1'>下发状态</th>
             <th data-priority='1'>返回状态</th>
+            <th data-priority='1'>IDCODE</th>
+            <th data-priority='1'>IDCODE解码</th>
           </tr>
         </thead>
         <tbody>
@@ -25,10 +26,11 @@
               <td><%= category_request.app_id %></td>
               <td><%= category_request.request_ip %></td>
               <td><%= category_request.appuser_id %></td>
-              <td><%= category_request.base_decode %></td>
               <td><%= category_request.request_time %></td>
               <td><%= CategoryRequest.release_types.invert[category_request.release_status] %></td>
               <td><%= CategoryRequest.exceptions.invert[category_request.request_status] %></td>
+              <td><%= category_request.id_code %></td>
+              <td><%= category_request.base_decode %></td>
             </tr>
           <% end %>
         </tbody>
@@ -38,6 +40,6 @@
 </div>
 <script type='application/javascript'>
   <%= render 'shared/data_tables.js.erb',
-             column_ordering: raw([[1, 'asc']]),
-             column_defs: 2 %>
+             column_ordering: raw([[3, 'desc']]),
+             column_defs: 8 %>
 </script>
