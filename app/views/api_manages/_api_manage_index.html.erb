@@ -12,6 +12,7 @@
           <tr>
             <th data-priority='1'>名称</th>
             <th data-priority='1'>管理</th>
+            <th data-priority='1'>时间戳</th>
             <th data-priority='4'></th>
           </tr>
         </thead>
@@ -20,6 +21,13 @@
             <tr data-qa='datatable-row'>
               <td><%= api_manage.api_name %></td>
               <td><%= ApiManage.manage_types.invert[api_manage.manage] %></td>
+              <td>
+                <% if api_manage.api_name == 'download' %>
+                <%= Category.last_updated_at.to_i %>
+                <% elsif api_manage.api_name == 'resolution' %>
+                <%= CategoryFormula.last_updated_at.to_i %>
+                <% end %>
+              </td>
               <td>
                 <%= link_to edit_api_manage_path(api_manage) do %>
                   <span class='primary glyphicon glyphicon-pencil' alt='Edit' data-qa='api_manage-<%= api_manage.api_name %>-edit'></span>

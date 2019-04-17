@@ -38,6 +38,7 @@ module Api
           release_status: 1,
           request_ip: request.remote_ip,
           id_code: @id_code,
+          time_stamp: @timestamp.to_i,
         )
       end
 

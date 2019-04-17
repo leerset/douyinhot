@@ -5,6 +5,10 @@ class CategoryFormula < ApplicationRecord
   before_save :increase_version
   after_save :snapshot!
 
+  def self.last_updated_at
+    all.map(&:updated_at).max
+  end
+
   def increase_version
     self.version += 1
   end
