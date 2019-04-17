@@ -11,17 +11,19 @@
         <thead>
           <tr>
             <th data-priority='1'>APPID</th>
-            <th data-priority='1'>访问IP</th>
             <th data-priority='1'>用户ID</th>
-            <th data-priority='1'>硬件SN</th>
-            <th data-priority='1'>IDCODE</th>
-            <th data-priority='1'>GPS</th>
             <th data-priority='1'>品类编号</th>
             <th data-priority='1'>公式版本</th>
             <th data-priority='1'>采集值</th>
+            <th data-priority='1'>采集值解析</th>
             <th data-priority='1'>采集时间</th>
             <th data-priority='1'>解析结果</th>
             <th data-priority='1'>返回状态</th>
+            <th data-priority='1'>访问IP</th>
+            <th data-priority='1'>硬件SN</th>
+            <th data-priority='1'>IDCODE</th>
+            <th data-priority='1'>IDCODE解码</th>
+            <th data-priority='1'>GPS</th>
             <th data-priority='1'>硬件版本</th>
             <th data-priority='1'>软件版本</th>
             <th data-priority='1'>厂商</th>
@@ -32,17 +34,19 @@
           <% resolution_requests.each do |resolution_request| %>
             <tr data-qa='datatable-row'>
               <td><%= resolution_request.app_id %></td>
-              <td><%= resolution_request.request_ip %></td>
               <td><%= resolution_request.appuser_id %></td>
-              <td><%= resolution_request.hardware_id %></td>
-              <td><%= resolution_request.base_decode %></td>
-              <td><%= resolution_request.gps %></td>
               <td><%= resolution_request.category_number %></td>
               <td><%= resolution_request.formula_version %></td>
               <td><%= resolution_request.sample_value %></td>
+              <td><%= resolution_request.sample_x %></td>
               <td><%= resolution_request.sample_time %></td>
               <td><%= resolution_request.resolution_result %></td>
               <td><%= ResolutionRequest.exceptions.invert[resolution_request.return_status] %></td>
+              <td><%= resolution_request.request_ip %></td>
+              <td><%= resolution_request.hardware_id %></td>
+              <td><%= resolution_request.id_code %></td>
+              <td><%= resolution_request.base_decode %></td>
+              <td><%= resolution_request.gps %></td>
               <td><%= resolution_request.hardware_version %></td>
               <td><%= resolution_request.software_version %></td>
               <td><%= resolution_request.firm_name %></td>
@@ -56,6 +60,6 @@
 </div>
 <script type='application/javascript'>
   <%= render 'shared/data_tables.js.erb',
-             column_ordering: raw([[1, 'asc']]),
-             column_defs: 2 %>
+             column_ordering: raw([[6, 'desc']]),
+             column_defs: 18 %>
 </script>
