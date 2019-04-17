@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # Set custom paths.
   root to: 'static_page#home'
-
+  get 'api_doc', to: 'public#API_DOC.html' 
   # Set paths for API keys.
   resources :users, only: %i[index new edit create update destroy]
   resources :apps, only: %i[index new edit create update destroy]
