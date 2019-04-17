@@ -20,7 +20,7 @@ class ResolutionRequest < ApplicationRecord
     采集值长度不对}
 
   def sample_x
-    return unless sample_value.to_s =~ /^[0-9A-F]{8}$/i
+    return '格式错误' unless sample_value.to_s =~ /^[0-9A-F]{8}$/i
     hex_string = sample_value.scan(/[0-9A-F]{2}/i).reverse.join
     hex_string.to_i(16)
   end
