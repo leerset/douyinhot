@@ -16,7 +16,7 @@
             <th data-priority='1'>访问时间</th>
             <th data-priority='1'>下发状态</th>
             <th data-priority='1'>返回状态</th>
-            <th data-priority='1'>时间戳(参数/实际)</th>
+            <th data-priority='1'>时间戳</th>
             <th data-priority='1'>IDCODE</th>
             <th data-priority='1'>IDCODE解码</th>
           </tr>
@@ -31,7 +31,6 @@
               <td><%= CategoryRequest.release_types.invert[category_request.release_status] %></td>
               <td><%= CategoryRequest.exceptions.invert[category_request.request_status] %></td>
               <td><%= category_request.time_stamp %></td>
-              <td><%= "#{category_request.time_stamp}/#{Category.last_updated_at.to_i}" %></td>
               <td><%= category_request.id_code %></td>
               <td><%= category_request.base_decode %></td>
             </tr>
