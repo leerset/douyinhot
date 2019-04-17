@@ -1,0 +1,584 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+
+    <link rel="icon" type="image/png" href="/assets/greentest-logo-grey-32-32.png" data-qa="tab-favicon">
+    <title>Greentest API 接口文档</title>
+
+    <link rel="stylesheet" href="assets/doc_detail.min.css">
+    <link rel="stylesheet" href="assets/doc_skin3.min.css">
+    <link rel="stylesheet" href="assets/doc_sandalstrap.min.css">
+
+    <!-- 高亮未与 markdown兼容  -->
+    <link href="assets/doc_markdown_views.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/doc_atom-one-light.css">
+
+</head>
+<body class="nodata" >
+  <div class="container clearfix blog-content-box" id="mainBox">
+    <main>
+      <div class="blog-content-box">
+      	<div class="article-header-box">
+      		<div class="article-header">
+      			<div class="article-title-box"><h1 class="title-article">Greentest API 接口文档</h1></div>
+      			<div class="article-info-box">
+      				<div class="article-bar-top">
+      					<span class="time">2019年04月20日 16:20:19</span>
+              </div>
+      				<div class="operating"></div>
+      			</div>
+      		</div>
+        </div>
+	      <article class="baidu_pl">
+		<div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+			<div class="article-copyright">版权声明：本文系原创，转发请注明出处，商业用途联系作者	</div>
+			<div id="content_views" class="markdown_views prism-atom-one-dark">
+        <h3><a id="_1"></a>修订记录</h3>
+        <table>
+          <thead>
+          <tr>
+          <th>发布日期</th>
+          <th>修改说明</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>2019-04-20</td>
+          <td>第一次发布</td>
+          </tr>
+          </tbody>
+        </table>
+        <h3><a id="_9"></a>说明</h3>
+        <h4><a id="_11"></a>排版约定</h4>
+        <table>
+          <thead>
+          <tr>
+          <th>排版格式</th>
+          <th>含义</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>&lt; &gt;</td>
+          <td>变量</td>
+          </tr>
+          <tr>
+          <td>[ ]</td>
+          <td>可选项</td>
+          </tr>
+          <tr>
+          <td>{ }</td>
+          <td>必选项</td>
+          </tr>
+          <tr>
+          <td>|</td>
+          <td>互斥关系</td>
+          </tr>
+          <tr>
+          <td>等宽字体Courier New</td>
+          <td>屏幕输出</td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_21"></a>编码</h4>
+        <p>若请求消息体中的参数支持中文，则中文字符必须为UTF-8编码。</p>
+        <h4><a id="_25"></a>时间与日期</h4>
+        <p>日期与时间的表示有多种方式。为统一起见，除非是约定俗成或者有相应规范的，凡需要日期时间表示的地方一律采用UTC时间，遵循ISO 8601，并做以下约束：</p>
+        <ol>
+          <li>表示日期一律采用YYYY-MM-DD方式，例如2016-06-01表示2016年6月1日</li>
+          <li>表示时间一律采用hh:mm:ss方式，并在最后加一个+0800表示UTC时间。例如23:00:10 +0800表示UTC时间23点0分10秒。</li>
+          <li>凡涉及日期和时间合并表示时，在两者中间加空格，例如2016-06-01 23:00:10 +0800表示UTC时间2016年6月1日23点0分10秒</li>
+        </ol>
+        <h4><a id="_33"></a>发送请求</h4>
+        <p>共有三种方式可以基于已构建好的请求消息发起请求，分别为：</p>
+        <ul>
+          <li>
+          <p>cURL</p>
+          <p>cURL是一个命令行工具，用来执行各种URL操作和信息传输。cURL充当的是HTTP客户端，可以发送HTTP请求给服务端，并接收响应消息。cURL适用于接口调试。关于cURL详细信息请参见<a href="https://curl.haxx.se/" rel="nofollow">https://curl.haxx.se/</a>。</p>
+          </li>
+          <li>
+          <p>编码</p>
+          <p>通过编码调用接口，组装请求消息，并发送处理请求消息。</p>
+          </li>
+          <li>
+          <p>REST客户端</p>
+          <p>Mozilla、Google都为REST提供了图形化的浏览器插件，发送处理请求消息。针对Firefox，请参见<a href="https://addons.mozilla.org/en-US/firefox/addon/restclient/" rel="nofollow">FirefoxREST Client</a>；针对Chrome，请参见<a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop" rel="nofollow">Postman</a>。</p>
+          </li>
+        </ul>
+        <h3><a id="API__51"></a>API 规格</h3>
+        <h4><a id="_53"></a>公共请求消息头</h4>
+        <p>下表列出了所有 XXX API 所携带的公共头域。HTTP 协议的标准头域不再这里列出了。</p>
+        <table>
+          <thead>
+          <tr>
+          <th>消息头（Header）</th>
+          <th>是否必须</th>
+          <th>说明</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td>Content-Type</td>
+            <td>可选</td>
+            <td>application/json; charset=utf-8</td>
+            </tr>
+            <tr>
+            <td>Green-Appid</td>
+            <td>必须</td>
+            <td>用户所使用的APP的ID</td>
+            </tr>
+            <tr>
+            <td>Green-Userid</td>
+            <td>可选</td>
+            <td>用户ID</td>
+            </tr>
+          </tbody>
+        </table>
+        <h4><a id="_61"></a>公共响应消息头</h4>
+        <p>下表列出了所有 XXX API的公共响应头域。HTTP协议的标准响应头域不再这里列出了。</p>
+        <table>
+          <thead>
+          <tr>
+          <th>消息头（Header）</th>
+          <th>说明</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>Content-Type</td>
+          <td>只支持JSON格式，application/json; charset=utf-8</td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_69"></a>正常返回格式</h4>
+        <table>
+          <thead>
+          <tr>
+          <th>参数名</th>
+          <th>类型</th>
+          <th>说明</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td>success</td>
+            <td>string</td>
+            <td>正确／错误提示</td>
+            </tr>
+            <tr>
+            <td>code</td>
+            <td>number</td>
+            <td>错误码</td>
+            </tr>
+            <tr>
+            <td>result</td>
+            <td>data</td>
+            <td>本次请求的结果</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>示例</p>
+        <pre><code class="prism language-json"><span class="token punctuation">{</span>
+    <span class="token string">"success"</span><span class="token punctuation">:</span> <span class="token string">true</span><span class="token punctuation">,</span>
+    <span class="token string">"code"</span><span class="token punctuation">:</span> <span class="token string">0</span><span class="token punctuation">,</span>
+    <span class="token string">"result"</span><span class="token punctuation">:</span> <span class="token string">{"data": "hash"}</span>
+<span class="token punctuation">}</span></code></pre>
+        <h4><a id="_69"></a>错误返回格式</h4>
+        <p>XXX  错误响应符合BCE规范，统一为如下格式。后续各接口不再单独列出。</p>
+        <table>
+          <thead>
+          <tr>
+          <th>参数名</th>
+          <th>类型</th>
+          <th>说明</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td>success</td>
+            <td>string</td>
+            <td>正确／错误提示</td>
+            </tr>
+            <tr>
+            <td>code</td>
+            <td>number</td>
+            <td>错误码</td>
+            </tr>
+            <tr>
+            <td>reason</td>
+            <td>string</td>
+            <td>错误描述</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>示例</p>
+        <pre><code class="prism language-json"><span class="token punctuation">{</span>
+      <span class="token string">"success"</span> <span class="token punctuation">:</span> <span class="token string">true</span><span class="token punctuation">,</span>
+      <span class="token string">"code"</span> <span class="token punctuation">:</span> <span class="token string">6</span><span class="token punctuation">,</span>
+      <span class="token string">"reason"</span> <span class="token punctuation">:</span> <span class="token string">"硬件编号无效"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre>
+        <p>其中，code为错误码，所有错误码取值来源 XXX 公共错误码和 XXX 专有错误码。</p>
+        <h4><a id="_93"></a>公共错误码</h4>
+        <table>
+          <thead>
+            <tr>
+            <th>错误码</th>
+            <th>错误描述</th>
+            <th>HTTP 状态码</th>
+            <th>中文解释</th>
+            <th>英文解释</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td>1</td>
+            <td>接口关闭</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>2</td>
+            <td>用户停止服务</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>3</td>
+            <td>用户无效</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>7</td>
+            <td>设备无效</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h4><a id="_93"></a>下载专有错误码</h4>
+        <table>
+          <thead>
+          <tr>
+          <th>错误码</th>
+          <th>错误描述</th>
+          <th>HTTP 状态码</th>
+          <th>中文解释</th>
+          <th>英文解释</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td>0</td>
+            <td>正常，下发更新品类数据</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>4</td>
+            <td>时间戳相同</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h4><a id="_93"></a>解析专有错误码</h4>
+        <table>
+          <thead>
+          <tr>
+          <th>错误码</th>
+          <th>错误描述</th>
+          <th>HTTP 状态码</th>
+          <th>中文解释</th>
+          <th>英文解释</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td>0</td>
+            <td>解析值</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>4</td>
+            <td>品类无效</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>5</td>
+            <td>GPS无效</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>6</td>
+            <td>硬件编号无效</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>8</td>
+            <td>采集值无效</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>9</td>
+            <td>采集值为零</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>10</td>
+            <td>检测公式异常</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>11</td>
+            <td>采集值长度不对</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h3><a id="_105"></a>接口说明</h3>
+        <h4><a id="_109"></a>接口简介</h4>
+        <p>依次列出所有接口</p>
+        <table>
+          <thead>
+          <tr>
+          <th>类型</th>
+          <th>子类型</th>
+          <th>说明</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_117"></a>接口调用流程</h4>
+        <p>说明接口使用流程</p>
+        <h3><a id="XXXX_123"></a>XXXX</h3>
+        <h4><a id="_125"></a>描述</h4>
+        <p>对接口的描述</p>
+        <h4><a id="URI_131"></a>URI</h4>
+        <p>POST /v1/{id}/user</p>
+        <p>Path 参数</p>
+        <table>
+          <thead>
+          <tr>
+          <th>参数</th>
+          <th>说明</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody>
+        </table><p>query 参数</p>
+        <table>
+          <thead>
+          <tr>
+          <th>参数</th>
+          <th>是否必须</th>
+          <th>描述</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_153"></a>请求消息头</h4>
+        <p>除公共消息头外，无其它特殊消息头。</p>
+        <table>
+          <thead>
+          <tr>
+          <th>参数</th>
+          <th>说明</th>
+          <th>是否必须</th>
+          <th>示例</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_163"></a>请求参数体</h4>
+        <table>
+          <thead>
+          <tr>
+          <th>参数名称</th>
+          <th>类型</th>
+          <th>描述</th>
+          <th>是否必须</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>result</td>
+          <td>xxx</td>
+          <td>对取值范围，约束，说明，示例的描述</td>
+          <td>是</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>注：类型部分，如果是一个对象，可以在用 <code>xxx 字段数据结构</code> 在下面表格说明</p>
+        <p>xxx 字段数据结构说明</p>
+        <table>
+          <thead>
+          <tr>
+          <th>参数</th>
+          <th>类型</th>
+          <th>描述</th>
+          <th>是否必选</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_179"></a>返回消息头</h4>
+        <p>除公共消息头，无其它特殊消息头。</p>
+        <p>或</p>
+        <table>
+          <thead>
+          <tr>
+          <th>参数</th>
+          <th>说明</th>
+          <th>是否必须</th>
+          <th>示例</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_191"></a>返回参数</h4>
+        <table>
+          <thead>
+          <tr>
+          <th>参数名称</th>
+          <th>类型</th>
+          <th>描述</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>subnets</td>
+          <td>List xxx</td>
+          <td>子网列表</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>xxx 字段数据结构说明</p>
+        <table>
+          <thead>
+          <tr>
+          <th>参数</th>
+          <th>是否必选</th>
+          <th>参数说明</th>
+          <th>描述</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_205"></a>错误码</h4>
+        <table>
+          <thead>
+          <tr>
+          <th>HTTP 状态码</th>
+          <th>错误码</th>
+          <th>错误描述</th>
+          <th>中文解释</th>
+          <th>英文解释</th>
+          <th>建议措施</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4><a id="_211"></a>请求示例</h4>
+        <pre><code>URI
+Header
+Body</code></pre>
+        <h4><a id="_223"></a>应答示例</h4>
+        <pre><code>Status: 200
+Header:
+Body:</code></pre>
+      </div>
+    </div>
+  </article>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
