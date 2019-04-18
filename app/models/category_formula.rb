@@ -20,10 +20,15 @@ class CategoryFormula < ApplicationRecord
 
   def calculate(sample)
     return 0 unless sample.to_s =~ /^[0-9A-F]{8}$/i
+    result_min = 0
+    result_max = self.top_limit || 9999
     begin
       hex_string = sample.scan(/[0-9A-F]{2}/i).reverse.join
       x = hex_string.to_i(16)
-      eval(self.formula).to_i
+      result = eval(self.formula).to_i
+      result = result_min if result < result_min
+      result = result_max if result > result_max
+      result
     rescue
       0
     end
