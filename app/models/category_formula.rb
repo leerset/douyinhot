@@ -25,7 +25,7 @@ class CategoryFormula < ApplicationRecord
     begin
       hex_string = sample.scan(/[0-9A-F]{2}/i).reverse.join
       x = hex_string.to_i(16)
-      result = eval(self.formula).to_i
+      result = eval(self.formula).round
       result = result_min if result < result_min
       result = result_max if result > result_max
       result
