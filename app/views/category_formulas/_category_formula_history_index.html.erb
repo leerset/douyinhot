@@ -1,0 +1,39 @@
+<div class='row' id='api-key-index'>
+  <div class='col-sm-12'>
+    <div class='card-box table-responsive'>
+      <%= render 'shared/table_header',
+                 title: '历史品类公式',
+                 tooltip_message: "<h6>历史品类公式</h6>",
+                 link: nil %>
+      <table id='datatable-responsive'
+             class='table table-striped table-bordered dt-responsive nowrap'
+             cellspacing='0' width='100%'>
+        <thead>
+          <tr>
+            <th data-priority='1'>品类</th>
+            <th data-priority='1'>品类编号</th>
+            <th data-priority='1'>公式</th>
+            <th data-priority='1'>上限</th>
+            <th data-priority='1'>版本号</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% category_formula_histories.each do |category_formula_history| %>
+            <tr data-qa='datatable-row'>
+              <td><%= category_formula_history.category_formula.category.category_name %></td>
+              <td><%= category_formula_history.category_number %></td>
+              <td><%= category_formula_history.formula %></td>
+              <td><%= category_formula_history.top_limit %></td>
+              <td><%= category_formula_history.version %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type='application/javascript'>
+  <%= render 'shared/data_tables.js.erb',
+             column_ordering: raw([[4, 'desc']]),
+             column_defs: 5 %>
+</script>

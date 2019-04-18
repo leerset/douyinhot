@@ -1,10 +1,13 @@
     class CategoryFormulasController < ApplicationController
-  before_action :set_category_formula, only: %i[edit update destroy]
+  before_action :set_category_formula, only: %i[show edit update destroy]
 
   # GET /category_formulas/new.
   # Create a new API key.
   def new
     @category_formula = CategoryFormula.new
+  end
+
+  def show
   end
 
   # GET /category_formulas.

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # Set paths for API keys.
   resources :users, only: %i[index new edit create update destroy]
   resources :apps, only: %i[index new edit create update destroy]
-  resources :category_formulas, only: %i[index new edit create update destroy]
+  resources :category_formulas, only: %i[index show new edit create update destroy]
 
   resources :groups, only: %i[index new edit create update destroy]
   resources :categories, only: %i[index show new edit create update destroy]

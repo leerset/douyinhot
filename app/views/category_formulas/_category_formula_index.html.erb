@@ -30,6 +30,10 @@
                 <%= link_to edit_category_formula_path(category_formula) do %>
                   <span class='primary glyphicon glyphicon-pencil' alt='Edit' data-qa='category-formula-<%= category_formula.category.category_name %>-edit'></span>
                 <% end %>
+                <span>&nbsp;&nbsp;</span>
+                <%= link_to category_formula_path(category_formula) do %>
+                  <span class='primary glyphicon glyphicon-search' alt='Edit' data-qa='category-formula-<%= category_formula.category.category_name %>-edit'></span>
+                <% end %>
                 <%= link_to category_formula_path(category_formula),
                             method: :delete,
                             data: { 'confirm-swal': Messages::CONFIRM_ACTION_DELETE } do %>

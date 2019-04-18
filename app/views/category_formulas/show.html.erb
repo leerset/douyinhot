@@ -1,0 +1,14 @@
+<% provide(:title, '品类公式') %>
+<% provide(:button_text, '品类公式') %>
+<h1>当前品类公式</h1>
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+    <%= render 'show_form' %>
+  </div>
+</div>
+<h1>历史品类公式</h1>
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+    <%= render 'category_formula_history_index', category_formula_histories: @category_formula.category_formula_histories %>
+  </div>
+</div>

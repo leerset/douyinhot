@@ -1,0 +1,28 @@
+<div class='row' id='api-key-index'>
+  <div class='col-sm-12'>
+    <div class='card-box table-responsive'>
+      <table id='datatable-current'
+             class='table table-striped table-bordered dt-responsive nowrap'
+             cellspacing='0' width='100%'>
+        <thead>
+          <tr>
+            <th data-priority='1'>品类</th>
+            <th data-priority='1'>品类编号</th>
+            <th data-priority='1'>公式</th>
+            <th data-priority='1'>上限</th>
+            <th data-priority='1'>版本号</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-qa='datatable-row'>
+            <td><%= @category_formula.category.category_name %></td>
+            <td><%= @category_formula.category_number %></td>
+            <td><%= @category_formula.formula %></td>
+            <td><%= @category_formula.top_limit %></td>
+            <td><%= @category_formula.version %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
