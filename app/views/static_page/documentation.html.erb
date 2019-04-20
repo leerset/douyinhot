@@ -1,0 +1,57 @@
+<% provide(:title, '说明文档') %>
+<div class="container clearfix blog-content-box" id="mainBox">
+  <main>
+    <div class="blog-content-box">
+    	<div class="article-header-box">
+    		<div class="article-header">
+    			<div class="article-title-box"><h1 class="title-article">Greentest API 说明文档</h1></div>
+    		</div>
+      </div>
+      <article class="baidu_pl">
+	<div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+		<div id="content_views" class="markdown_views prism-atom-one-dark">
+      <h3><a id="_9"></a>接口安装说明</h3>
+      <ol>
+        <li>CentOS服务器需要安装rails，rvm，bundler，nodejs，以及rails相关的devtools。</li>
+        <li>代码git下载到服务器后，用puma启动。</li>
+        <li>接口启动命令：RAILS_ENV=production bin/puma.sh</li>
+        <li>接口停止命令：RAILS_ENV=production bin/puma.sh stop</li>
+        <li>接口重启命令：RAILS_ENV=production bin/puma.sh stop && RAILS_ENV=production bin/puma.sh</li>
+      </ol>
+      <h3><a id="_11"></a>MySQL数据库安装位置说明</h4>
+      <p>详见云服务器:MySQL数据库安装说明</p>
+      <h3><a id="_22"></a>MySQL数据库root账号密码</h4>
+      <p>详见数据库配置文件:/home/deploy/greentest/config/database.yml</p>
+      <h3><a id="_22"></a>MySQL数据库结构和详情</h4>
+      <ul>
+        <% @table_descs.each do |desc| %>
+          <li>
+            <p><%= desc[:table_name] %></p>
+            <p>
+            <table>
+              <thead>
+              <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Null</th>
+              <th>Key</th>
+              <th>Default</th>
+              <th>Extra</th>
+              </tr>
+              </thead>
+              <tbody>
+                <% desc[:desc].each do |line| %>
+                <tr>
+                <% line.each do |s| %>
+                  <td><%= s %></td>
+                <% end %>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

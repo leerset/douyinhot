@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Set custom paths.
   root to: 'static_page#home'
   get 'api_doc', to: 'static_page#api_doc'
+  get 'documentation', to: 'static_page#documentation'
   # Set paths for API keys.
   resources :users, only: %i[index new edit create update destroy]
   resources :apps, only: %i[index new edit create update destroy]
