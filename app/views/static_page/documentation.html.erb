@@ -14,9 +14,9 @@
       <ol>
         <li>CentOS服务器需要安装rails，rvm，bundler，nodejs，以及rails相关的devtools。</li>
         <li>代码git下载到服务器后，用puma启动。</li>
-        <li>接口启动命令：RAILS_ENV=production bin/puma.sh</li>
+        <li>接口启动命令：RAILS_ENV=production bin/puma.sh start</li>
         <li>接口停止命令：RAILS_ENV=production bin/puma.sh stop</li>
-        <li>接口重启命令：RAILS_ENV=production bin/puma.sh stop && RAILS_ENV=production bin/puma.sh</li>
+        <li>接口重启命令：RAILS_ENV=production bin/puma.sh stop && RAILS_ENV=production bin/puma.sh start</li>
       </ol>
       <h3><a id="_11"></a>MySQL数据库安装位置说明</h4>
       <p>详见云服务器:MySQL数据库安装说明</p>
