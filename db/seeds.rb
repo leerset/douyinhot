@@ -8,6 +8,3 @@
 if User.none?
   User.create(user_name: 'ABC', email: 'admin@aaa.com', password: 'abc123')
 end
-
-ApiManage.create_with(manage: 0).find_or_create_by(api_name: 'download')
-ApiManage.create_with(manage: 0).find_or_create_by(api_name: 'resolution')
