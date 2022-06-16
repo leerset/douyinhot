@@ -50,8 +50,11 @@
       <div id='navigation'>
         <!-- Navigation Menu -->
         <ul class='navigation-menu'>
+          <li>
+            <a href='/' data-qa="menu-admin"><%= image_tag 'home.svg' %>首页</a>
+          </li>
           <li class='has-submenu'>
-            <a href='#' data-qa="menu-admin"><%= image_tag 'home.svg' %>设置</a>
+            <a href='#' data-qa="menu-admin"><%= image_tag 'alarm_clock.svg' %>设置</a>
             <ul class='management-dropdown submenu'>
               <% if can? :index, User %>
                 <li><%= link_to '用户', users_path, data: { qa: 'menu-organization' } %></li>
@@ -62,7 +65,7 @@
             </ul>
           </li>
           <li class='has-submenu'>
-            <a href='#' data-qa="menu-admin"><%= image_tag 'home.svg' %>记录</a>
+            <a href='#' data-qa="menu-admin"><%= image_tag 'frame.svg' %>记录</a>
             <ul class='management-dropdown submenu'>
               <% if can? :index, Video %>
                 <li><%= link_to '视频', videos_path, data: { qa: 'menu-organization' } %></li>

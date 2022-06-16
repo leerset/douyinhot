@@ -2,8 +2,8 @@
   <div class='col-sm-12'>
     <div class='card-box table-responsive'>
       <%= render 'shared/table_header',
-                 title: '抖音账号',
-                 tooltip_message: "<h6>抖音账号</h6>",
+                 title: '账号',
+                 tooltip_message: "<h6>账号</h6>",
                  link: new_douyin_account_path %>
       <table id='datatable-responsive'
              class='table table-striped table-bordered dt-responsive nowrap'
@@ -25,7 +25,11 @@
               <td><%= douyin_account.number %></td>
               <td><%= douyin_account.url %></td>
               <td><%= douyin_account.hot_threshold %></td>
-              <td><%= douyin_account.updated_at.localtime %></td>
+              <% if video = douyin_account.videos.order(updated_at: :desc).first %>
+                <td><%= video.updated_at.localtime %></td>
+              <% else %>
+                <td><%= douyin_account.updated_at.localtime %></td>
+              <% end %>
               <td>
                 <%= link_to edit_douyin_account_path(douyin_account) do %>
                   <span class='primary glyphicon glyphicon-pencil' alt='Edit' data-qa='douyin_account-<%= douyin_account.name %>-edit'></span>

@@ -3,19 +3,19 @@
     <%= render 'shared/error_messages', object: f.object %>
     <div class='row'>
       <div class='col-md-12'>
-        <%= f.label :name, '抖音名称' %>
+        <%= f.label :name, '名称' %>
         <%= f.text_field :name, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
       </div>
     </div>
     <div class='row'>
       <div class='col-md-12'>
-        <%= f.label :number, '抖音号' %>
+        <%= f.label :number, '编号' %>
         <%= f.text_field :number, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
       </div>
     </div>
     <div class='row'>
       <div class='col-md-12'>
-        <%= f.label :url, '抖音链接' %>
+        <%= f.label :url, '链接' %>
         <%= f.text_field :url, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
       </div>
     </div>
