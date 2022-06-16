@@ -13,14 +13,7 @@ class Ability
     alias_action :create, :read, :update, :archive, :restore, to: :cruar
 
     can :crud,         User
-    can :crud,         App
-    can :crud,         Group
-    can :crud,         Category
-    can :crud,         CategoryFormula
-    can :crud,         CategoryFormulaHistory
-    can :crud,         CategoryRequest
-    can :crud,         ResolutionRequest
-    can :crud,         ApiManage
-
+    can :crud,         DouyinAccount
+    can :crud,         Video
   end
 end

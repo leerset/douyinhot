@@ -56,44 +56,21 @@
               <% if can? :index, User %>
                 <li><%= link_to '用户', users_path, data: { qa: 'menu-organization' } %></li>
               <% end %>
-              <% if can? :index, App %>
-                <li><%= link_to 'APP', apps_path, data: { qa: 'menu-organization' } %></li>
-              <% end %>
-              <% if can? :index, ApiManage %>
-                <li><%= link_to '接口管理', api_manages_path, data: { qa: 'menu-organization' } %></li>
+              <% if can? :index, DouyinAccount %>
+                <li><%= link_to '账号', douyin_accounts_path, data: { qa: 'menu-organization' } %></li>
               <% end %>
             </ul>
           </li>
           <li class='has-submenu'>
             <a href='#' data-qa="menu-admin"><%= image_tag 'home.svg' %>记录</a>
             <ul class='management-dropdown submenu'>
-              <% if can? :index, CategoryRequest %>
-                <li><%= link_to '下载', category_requests_path, data: { qa: 'menu-organization' } %></li>
-              <% end %>
-              <% if can? :index, ResolutionRequest %>
-                <li><%= link_to '解析', resolution_requests_path, data: { qa: 'menu-organization' } %></li>
+              <% if can? :index, Video %>
+                <li><%= link_to '视频', videos_path, data: { qa: 'menu-organization' } %></li>
               <% end %>
             </ul>
           </li>
-          <% if can? :index, Group %>
-            <%= active_link_to '/groups', data: { qa: 'menu-devices' }, wrap_tag: :li do %>
-              <%= image_tag 'frame.svg' %>
-              <span>分组</span>
-            <% end %>
-          <% end %>
-          <% if can? :index, Category %>
-            <%= active_link_to '/categories', data: { qa: 'menu-device-types' }, wrap_tag: :li do %>
-              <%= image_tag 'mind_map.svg' %>
-              <span>品类</span>
-            <% end %>
-          <% end %>
-          <% if can? :index, CategoryFormula %>
-            <%= active_link_to '/category_formulas', data: { qa: 'menu-device-types' }, wrap_tag: :li do %>
-              <%= image_tag 'mind_map.svg' %>
-              <span>品类公式</span>
-            <% end %>
-          <% end %>
         </ul>
+      </ul>
         <!-- End navigation menu -->
       </div> <!-- end #navigation -->
     <% elsif logged_out? %>

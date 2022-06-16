@@ -1,0 +1,36 @@
+<%= form_for @douyin_account do |f| %>
+  <div id='douyin_account-form'>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :name, '抖音名称' %>
+        <%= f.text_field :name, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :number, '抖音号' %>
+        <%= f.text_field :number, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :url, '抖音链接' %>
+        <%= f.text_field :url, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :hot_threshold, '热门阀值' %>
+        <%= f.text_field :hot_threshold, { required: '', 'data-parsley-maxlength': Constants::MAX_STRING_LEN, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class='row'>&nbsp;</div>
+    <div class='row form-btn-container'>
+      <div class='col-md-12'>
+        <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+        <%= link_to '取消', douyin_accounts_path, class: 'btn btn-cancel' %>
+      </div>
+    </div>
+  </div>
+<% end %>

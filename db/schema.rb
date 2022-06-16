@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_17_083002) do
+ActiveRecord::Schema.define(version: 2022_06_16_070204) do
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "douyin_accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "number"
+    t.string "url"
+    t.integer "hot_threshold"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -23,6 +32,21 @@ ActiveRecord::Schema.define(version: 2019_04_17_083002) do
     t.string "user_name", default: "管理员", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "videos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "douyin_account_id"
+    t.string "name"
+    t.string "number"
+    t.string "tag"
+    t.string "url"
+    t.integer "like"
+    t.integer "comment"
+    t.integer "attention"
+    t.datetime "release_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["douyin_account_id"], name: "index_videos_on_douyin_account_id"
   end
 
 end

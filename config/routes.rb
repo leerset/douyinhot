@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get 'documentation', to: 'static_page#documentation'
   # Set paths for API keys.
   resources :users, only: %i[index new edit create update destroy]
+  resources :douyin_accounts, only: %i[index new edit create update destroy]
+  resources :videos, only: %i[index]
 
 end

@@ -17,7 +17,6 @@
 //= require jquery-ui
 //= require jquery-ui/widgets/sortable
 //= require turbolinks
-//= require highcharts
 //= require bootstrap
 //= require plugins/bootstrap-toggle
 //= require chartkick

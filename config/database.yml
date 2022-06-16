@@ -2,17 +2,17 @@ default: &default
   adapter: mysql2
   pool: 5
   username: root
-  password: 
+  password:
   port: <%= ENV['MYSQL_PORT'] || 3306 %>
 
 test:
   <<: *default
-  database: greentestmini_test
+  database: douyinhot_test
 
 development:
   <<: *default
-  database: greentestmini
+  database: douyinhot
 
 production:
   <<: *default
-  database: greentestmini
+  database: douyinhot

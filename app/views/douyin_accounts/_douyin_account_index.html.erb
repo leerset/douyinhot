@@ -1,0 +1,50 @@
+<div class='row' id='api-key-index'>
+  <div class='col-sm-12'>
+    <div class='card-box table-responsive'>
+      <%= render 'shared/table_header',
+                 title: '抖音账号',
+                 tooltip_message: "<h6>抖音账号</h6>",
+                 link: new_douyin_account_path %>
+      <table id='datatable-responsive'
+             class='table table-striped table-bordered dt-responsive nowrap'
+             cellspacing='0' width='100%'>
+        <thead>
+          <tr>
+            <th data-priority='1'>名称</th>
+            <th data-priority='1'>编号</th>
+            <th data-priority='1'>链接</th>
+            <th data-priority='1'>阀值</th>
+            <th data-priority='3'>最近刷新时间</th>
+            <th data-priority='4'></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% douyin_accounts.each do |douyin_account| %>
+            <tr data-qa='datatable-row'>
+              <td><%= douyin_account.name %></td>
+              <td><%= douyin_account.number %></td>
+              <td><%= douyin_account.url %></td>
+              <td><%= douyin_account.hot_threshold %></td>
+              <td><%= douyin_account.updated_at.localtime %></td>
+              <td>
+                <%= link_to edit_douyin_account_path(douyin_account) do %>
+                  <span class='primary glyphicon glyphicon-pencil' alt='Edit' data-qa='douyin_account-<%= douyin_account.name %>-edit'></span>
+                <% end %>
+                <%= link_to douyin_account_path(douyin_account),
+                            method: :delete,
+                            data: { 'confirm-swal': Messages::CONFIRM_ACTION_DELETE } do %>
+                  <span class='danger glyphicon glyphicon-trash' data-qa='douyin_account-delete-button' alt='Delete'></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type='application/javascript'>
+  <%= render 'shared/data_tables.js.erb',
+             column_ordering: raw([[1, 'asc']]),
+             column_defs: 5 %>
+</script>
