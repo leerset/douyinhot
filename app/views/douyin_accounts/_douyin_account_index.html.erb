@@ -25,11 +25,7 @@
               <td><%= douyin_account.number %></td>
               <td><%= douyin_account.url %></td>
               <td><%= douyin_account.hot_threshold %></td>
-              <% if video = douyin_account.videos.order(updated_at: :desc).first %>
-                <td><%= video.updated_at.localtime %></td>
-              <% else %>
-                <td><%= douyin_account.updated_at.localtime %></td>
-              <% end %>
+              <td><%= douyin_account.last_refresh_time.localtime %></td>
               <td>
                 <%= link_to edit_douyin_account_path(douyin_account) do %>
                   <span class='primary glyphicon glyphicon-pencil' alt='Edit' data-qa='douyin_account-<%= douyin_account.name %>-edit'></span>

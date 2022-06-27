@@ -1,0 +1,2 @@
+module KaoguProductionsHelper
+end

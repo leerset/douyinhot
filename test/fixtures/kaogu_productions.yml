@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rank: MyString
+  name: MyString
+  link: MyString
+  imageUrl: MyString
+  nowPrice: MyString
+  oldPrice: MyString
+  commissionRate: MyString
+  videSales: MyString
+  views: MyString
+  videoCount: MyString
+
+two:
+  rank: MyString
+  name: MyString
+  link: MyString
+  imageUrl: MyString
+  nowPrice: MyString
+  oldPrice: MyString
+  commissionRate: MyString
+  videSales: MyString
+  views: MyString
+  videoCount: MyString

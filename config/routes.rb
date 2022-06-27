@@ -9,5 +9,13 @@ Rails.application.routes.draw do
   resources :users, only: %i[index new edit create update destroy]
   resources :douyin_accounts, only: %i[index new edit create update destroy]
   resources :videos, only: %i[index]
+  resources :kaogu_productions, only: %i[index]
 
+  # Set paths for the API.
+  namespace :api do
+    get 'run_key', to: 'run_keys#run_key'
+    get 'kaogu_run_key', to: 'run_keys#kaogu_run_key'
+    post 'update_runkey_status', to: 'run_keys#update_runkey_status'
+    post 'update_kaogu_status', to: 'run_keys#update_kaogu_status'
+  end
 end

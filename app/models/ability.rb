@@ -15,5 +15,6 @@ class Ability
     can :crud,         User
     can :crud,         DouyinAccount
     can :crud,         Video
+    can :crud,         KaoguProduction
   end
 end

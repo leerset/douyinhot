@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'pry'
+
 gem 'active_link_to',           '1.0.4'     # Use active_link_to helper.
 gem 'acts-as-taggable-on',      '6.0.0'     # Manage tags.
 gem 'bcrypt',                   '3.1.11'    # Use ActiveModel has_secure_password.

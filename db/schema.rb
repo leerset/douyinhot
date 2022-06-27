@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_16_070204) do
+ActiveRecord::Schema.define(version: 2022_06_27_084521) do
 
   create_table "douyin_accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,22 @@ ActiveRecord::Schema.define(version: 2022_06_16_070204) do
     t.integer "hot_threshold"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "kaogu_productions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.integer "rank"
+    t.string "name"
+    t.string "link"
+    t.string "imageUrl"
+    t.string "nowPrice"
+    t.string "oldPrice"
+    t.string "commissionRate"
+    t.string "videSales"
+    t.string "views"
+    t.string "videoCount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "sales", precision: 10, scale: 2, default: "0.0", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
